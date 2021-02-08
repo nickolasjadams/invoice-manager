@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Invoices</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="loggedin">
+
+	<button id="nav-toggle"><i class="fas fa-bars"></i></button>
+	<nav id="main-nav" class="sidenav">
+		<img class="logo" src="https://nickjadams.com/images/logo.png" alt="Logo">
+		<ul>
+			<li><a href="dashboard.html"><i class="fas fa-chart-line" title="Dashboard"></i><span class="word">Dashboard</span></a></li>
+			<li class="active"><a href="invoices.html"><i class="fas fa-envelope-open-text" title="Invoices"></i><span class="word">Invoices</span></a></li>
+			<li><a href="myaccount.html"><i class="fas fa-user-circle" title="My Account"></i><span class="word">My Account</span></a></li>
+			<li><a href="/"><i class="fas fa-power-off" title="Logout"></i><span class="word">Logout</span></a></li>
+		</ul>
+	</nav>
+
+	<div id="main-wrapper">
+
+
+		<main>
+
+			<header class="header-bar">
+				<h1>Invoices</h1>
+			</header>
+
+			<section class="content">
+
+				<table>
+					<tr>
+						<th>Status</th>
+						<th>ID</th>
+						<th>Due</th>
+						<th>Amount</th>
+						<th>Summary</th>
+					</tr>
+					<tr>
+						<td><span class="status-btn bg-warning">Due</span></td>
+						<td><a href="invoice.html">0005</a></td>
+						<td>1/30/2021</td>
+						<td>$500.00</td>
+						<td>Lorem ipsum dolor sit amet...</td>
+					</tr>
+					<tr>
+						<td><span class="status-btn bg-danger">Overdue</span></td>
+						<td><a href="invoice.html">0004</a></td>
+						<td>12/30/2020</td>
+						<td>$500.00</td>
+						<td>Lorem ipsum dolor sit amet...</td>
+					</tr>
+					<tr>
+						<td><span class="status-btn bg-success">Paid</span></td>
+						<td><a href="invoice.html">0003</a></td>
+						<td>11/30/2020</td>
+						<td>$500.00</td>
+						<td>Lorem ipsum dolor sit amet...</td>
+					</tr>
+					<tr>
+						<td><span class="status-btn bg-success">Paid</span></td>
+						<td><a href="invoice.html">0002</a></td>
+						<td>10/30/2020</td>
+						<td>$500.00</td>
+						<td>Lorem ipsum dolor sit amet...</td>
+					</tr>
+					<tr>
+						<td><span class="status-btn bg-success">Paid</span></td>
+						<td><a href="invoice.html">0001</a></td>
+						<td>9/30/2020</td>
+						<td>$500.00</td>
+						<td>Lorem ipsum dolor sit amet...</td>
+					</tr>
+					
+				</table>
+
+
+			</section>
+
+		</main>
+
+
+		<footer>
+			&copy; 2021 Nick Adams 
+		</footer>
+
+	</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>
