@@ -7,7 +7,7 @@
   margin-right: 5px;
 }
 
-input {
+input, select, textarea {
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ddd;
@@ -121,6 +121,7 @@ html {
 
 body.loggedin {
   background: #f5f5f5;
+  /* Skip Nav */
 }
 body.loggedin .logo {
   width: 100%;
@@ -217,6 +218,28 @@ body.loggedin button#nav-toggle {
 body.loggedin button#nav-toggle.less {
   left: 13px;
 }
+body.loggedin .skip-nav {
+  list-style: none;
+  margin: 0;
+}
+body.loggedin .skip-nav li {
+  width: 100%;
+}
+body.loggedin .skip-nav a {
+  text-decoration: none;
+  position: fixed;
+  left: -4000px;
+  background: #283644;
+  color: #fff;
+  border: 2px solid #fff;
+  font-size: 1em;
+  margin: 10px;
+  padding: 10px;
+}
+body.loggedin .skip-nav a:focus {
+  left: 0;
+  z-index: 9999;
+}
 body.loggedin #main-wrapper {
   transition: all 0.4s cubic-bezier(0.59, 0.71, 0.32, 0.9);
   margin-left: 250px;
@@ -259,6 +282,86 @@ body.loggedin footer {
   height: 64px;
   background: #f5f5f5;
   box-shadow: 0px 0px 28px -19px rgba(0, 0, 0, 0.8);
+}
+
+.incomplete-account {
+  width: 100%;
+  background: #dc3545;
+  color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+.incomplete-account i {
+  font-size: 1.5em;
+  margin-right: 10px;
+  vertical-align: bottom;
+}
+.incomplete-account a {
+  text-decoration: underline;
+  color: #fff;
+}
+.incomplete-account a:hover, .incomplete-account a:focus {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.boxes {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+}
+.boxes img {
+  width: 100%;
+}
+
+.box {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  border: 2px solid black;
+}
+.box.flex {
+  min-width: calc(33.33% - 20px);
+}
+.box.flex:nth-child(3n+1) {
+  margin-left: 0 !important;
+}
+.box.flex:nth-child(3n) {
+  margin-right: 0 !important;
+}
+.box:first-child {
+  margin-right: 10px;
+}
+.box:last-child {
+  margin-left: 10px;
+}
+.box:not(:first-child):not(:last-child) {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.box.half {
+  width: calc(50% - 20px);
+}
+.box.half:first-child {
+  width: calc(50% - 10px);
+}
+.box.third {
+  width: calc(33.33% - 20px);
+}
+.box.quarter {
+  width: calc(25% - 20px);
+}
+.box.fifth {
+  width: calc(20% - 20px);
 }
 
 .status-btn {
@@ -1646,6 +1749,13 @@ body.loggedin footer {
   padding-right: 5px;
 }
 .input-field input, .input-field select, .input-field textarea {
+  width: 100%;
+}
+
+.form-element label {
+  display: block;
+}
+.form-element input, .form-element select, .form-element textarea {
   width: 100%;
 }
 

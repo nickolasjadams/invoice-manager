@@ -137,6 +137,15 @@
 	}
 }
 
+.form-element {
+	label {
+		display: block;
+	}
+	input, select, textarea {
+		width: 100%;
+	}
+}
+
 // Colors
 
 .success { color: $success; }
