@@ -244,6 +244,9 @@ body.loggedin #main-wrapper {
   transition: all 0.4s cubic-bezier(0.59, 0.71, 0.32, 0.9);
   margin-left: 250px;
 }
+body.loggedin #main-wrapper h2 {
+  font-size: 1.5em;
+}
 body.loggedin main header.header-bar {
   width: 100%;
   height: 70px;
