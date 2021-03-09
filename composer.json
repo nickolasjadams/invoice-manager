@@ -1,0 +1,11 @@
+{
+    "require": {
+        "katzgrau/klogger": "dev-master",
+        "devcoder-xyz/php-dotenv": "^1.0"
+    },
+    "autoload": {
+        "classmap": [
+            "./"
+        ]
+    }
+}
