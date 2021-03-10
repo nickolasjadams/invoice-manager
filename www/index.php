@@ -1,17 +1,15 @@
 <?php
 
-use App\Helpers\View;
-
-session_start();
+use App\Helpers\Path;
+use App\Helpers\Request;
+use App\Helpers\Router;
 
 require '../vendor/autoload.php';
 require '../app/app.php';
-    
-// Login Page
-View::render('login', [
-    'greeting' => 'Hello World',
-    'rand' => random_int(0, 100),
-    'variableVariablesForTheWin' => true
-]);
+
+require Router::load(Path::root() . '/routes.php')
+    ->direct(Request::uri(), Request::method());
+
+
 
 ?>
