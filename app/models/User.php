@@ -2,34 +2,22 @@
 
 namespace App\Models;
 
-use Database\Connection as DB;
-use PDO;
+use App\Models\Model;
 
-class User
+class User extends Model
 {
 
-    protected 
-        $id, $email, $pw, $fname, $lname, $company, $logo,
-        $phone, $address, $suite, $city, $state, $zip, 
-        $admin, $verified, $active, $created_at;
+    private $password;
+    
+    protected $id, $admin, $verified, $active;
 
-    // public function __construct($email, $pw, $fname, $lname, $company) {
+    public
+        $email,
+        $first_name, $last_name,
+        $company_company,
+        $logo,
+        $phone,
+        $address, $suite, $city, $state, $zip, 
+        $created_at;
 
-        
-        
-    // }
-
-
-    public static function all() {
-        $db = DB::make();
-
-        $statement = $db->prepare('select * from users');
-        $statement->execute();
-        // return $statement->fetchAll(PDO::FETCH_OBJ);
-        return $statement->fetchAll(PDO::FETCH_CLASS, User::class);
-
-
-
-        // $db = null;
-    }
 }

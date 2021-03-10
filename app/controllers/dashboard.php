@@ -1,9 +1,3 @@
 <?php
 
-use App\Models\User;
-
-echo 'Dashboard';
-
-$users = User::all();
-
-var_dump($users);
+echo '<h1>Dashboard</h1>';
