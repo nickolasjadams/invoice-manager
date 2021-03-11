@@ -41,8 +41,6 @@ abstract class Model
         $statement->execute();
         self::$records = $statement->fetchAll(PDO::FETCH_CLASS, get_called_class());
         $db = null; // close connection
-        echo $sql . '<br>';
-        var_dump(self::$records);
         return self::$records;
     }
 

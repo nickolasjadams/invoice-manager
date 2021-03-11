@@ -1,3 +1,12 @@
+<?php
+
+use App\Helpers\View;
+
+if (isset($_SESSION['user'])) {
+	header("Location: /dashboard");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,18 +17,18 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
 	<link rel="stylesheet" href="css/styles.css">
 
-	<meta name="msapplication-TileImage" content="https://florist.frb.io/images/favicons/win8-tile-144.png"/>
+	<meta name="msapplication-TileImage" content="/images/favicons/win8-tile-144.png"/>
 	<meta name="msapplication-TileColor" content="#1f379d"/>
 	
-	<link rel="shortcut icon" href="https://florist.frb.io/images/favicons/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" href="https://florist.frb.io/images/favicons/apple-touch-icon-192x192.png" sizes="192x192">
+	<link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/images/favicons/apple-touch-icon-192x192.png" sizes="192x192">
 </head>
 <body class="login">
 
 	<main>
 		<section class="intro">
 
-			<img class="logo" src="https://nickjadams.com/images/logo.png" alt="Nick Adams Logo">
+			<img class="logo" src="/images/logo.png" alt="Nick Adams Logo">
 			<h1>Partnership Service Manager</h1>
 			<!-- <p>Still need to update signup tooltip</p> -->
 
@@ -28,19 +37,10 @@
 		<section class="form-wrapper">
 
 			<?php
-				if ( $current_user === NULL ) {
-					include 'partials/login-form.php';
-					echo '<hr>';
-					echo '<button type="button" class="fw tac btn btn-primary"  data-toggle="modal" data-target="#signupModal">Create an Account</a>';
-				} else {
-					echo '<button class="btn btn-primary">Logout</button>';
-				}
+				include 'partials/login-form.php';
+				echo '<hr>';
+				echo '<button type="button" class="fw tac btn btn-primary"  data-toggle="modal" data-target="#signupModal">Create an Account</a>';
 			?>
-			
-			
-
-			
-
 			
 		</section>
 	</main>
@@ -52,9 +52,7 @@
 
 
 	<?php
-		if ( $current_user === NULL ) {
-			include 'partials/signup-form.php';
-		}
+		include 'partials/signup-form.php';
 	?>
 
 

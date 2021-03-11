@@ -24,10 +24,10 @@
 	<nav id="main-nav" class="sidenav">
 		<img class="logo" src="/images/logo.png" alt="Logo">
 		<ul>
-			<li class="active"><a href="dashboard.html"><i class="fas fa-chart-line" title="Dashboard"></i><span class="word">Dashboard</span></a></li>
+			<li class="active"><a href="/dashboard"><i class="fas fa-chart-line" title="Dashboard"></i><span class="word">Dashboard</span></a></li>
 			<li><a href="invoices.html"><i class="fas fa-envelope-open-text" title="Invoices"></i><span class="word">Invoices</span></a></li>
 			<li><a href="myaccount.html"><i class="fas fa-user-circle" title="My Account"></i><span class="word">My Account</span></a></li>
-			<li><a href="/"><i class="fas fa-power-off" title="Logout"></i><span class="word">Logout</span></a></li>
+			<li><a href="/logout"><i class="fas fa-power-off" title="Logout"></i><span class="word">Logout</span></a></li>
 		</ul>
 	</nav>
 
@@ -37,25 +37,23 @@
 		<main>
 
 			<header class="header-bar">
-				<h1>Dashboard Template</h1>
+				<h1>Welcome <?= $user->company_name ?></h1>
 			</header>
 
 			<section class="content">
-
+				<?php
+				if ($account_incomplete) { 
+				?>
 				<div class="incomplete-account">
 					<i class="fas fa-exclamation-circle"></i>
 					You haven't finished your account.  Please <a href="myaccount.html">complete your account</a> now.
-
 				</div>
+				<?php
+				}
+				?>
 
 
 				<h1>Dashboard</h1>
-
-                <p>Greeting: <?= $greeting ?></p>
-
-                <p>Random: <?= $rand ?></p>
-
-                <p>Variable variables for the win: <?= $variableVariablesForTheWin ?></p>
 
 				<p>Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Reprehenderit, vero! Provident debitis exercitationem ipsum, dolorum vero ad ipsam nostrum? Odio officia, adipisci perspiciatis eaque vel explicabo illum nihil libero veritatis.</p>
 

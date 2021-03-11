@@ -11,7 +11,7 @@
         <div class="modal-body">
 
             <div class="signup-form-wrapper">
-                <form action="#" class="row">
+                <form action="/signup" method="POST" class="row">
                     <div class="flexcol50 input-field">
                         <input type="text" name="first_name" required placeholder="First Name" title="First Name" />
                     </div>

@@ -19,3 +19,5 @@ $router->post('signup', 'app/controllers/user/store.php');
 
 
 $router->get('dashboard', 'app/controllers/dashboard.php');
+
+$router->get('logout', 'app/controllers/logout.php');
