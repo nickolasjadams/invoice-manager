@@ -18,6 +18,17 @@ $router->post('signup', 'app/controllers/user/store.php');
 
 
 
+
+/**
+ * Dashboard routes
+ */
+
 $router->get('dashboard', 'app/controllers/dashboard.php');
 
-$router->get('logout', 'app/controllers/logout.php');
+$router->get('invoices', 'app/controllers/invoice/index.php');
+
+$router->get('invoice', 'app/controllers/invoice/show.php');
+
+$router->get('my-account', 'app/controllers/MyAccountController.php', 'index');
+
+$router->get('logout', 'app/helpers/Session.php', 'logout');

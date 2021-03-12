@@ -1,5 +1,5 @@
 <?php
-session_start();
-session_destroy();
-header("Location: /");
-exit;
+
+use App\Helpers\Session;
+
+Session::logout();

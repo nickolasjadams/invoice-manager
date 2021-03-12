@@ -22,4 +22,15 @@ class Path
         Log::debug('Root not found from ' . $initial_location . ' with a max depth of ' . $max_depth);
     }
 
+    public static function toNameSpace($php_class_path) {
+        // remove file extension
+        $php_class_path = explode('.php', $php_class_path)[0];
+        // remove root path
+        $php_class_path = explode(Path::root() . '/', $php_class_path)[1];
+        // format as namespace
+        $php_class_path = str_replace('/', '\\', $php_class_path);
+        $php_class_path = ucwords($php_class_path, '\\');
+        return $php_class_path;
+    }
+
 }
