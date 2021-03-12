@@ -36,12 +36,6 @@ class Router
      */
     public function direct($uri, $requestType) {
 
-        
-
-        
-
-        
-
         if (array_key_exists($uri, $this->routes[$requestType])) {
             // check if specific method was stored.
             if (count(explode('@', $this->routes[$requestType][$uri])) == 2) {
@@ -58,9 +52,8 @@ class Router
     protected function callMethod($controller, $method) {
 
         try {
-
+            
             $controller = Path::toNameSpace($controller);
-
             if (!method_exists($controller, $method)) {
                 throw new Exception("{$controller} method {$method} not found");
             }
@@ -70,8 +63,6 @@ class Router
         } catch (Exception $e) {
             Log::error("Router error: " . $e->getMessage());
         }
-
-        
         
     }
 

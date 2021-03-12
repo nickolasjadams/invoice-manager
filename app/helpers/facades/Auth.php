@@ -13,10 +13,14 @@ class Auth
      * @return App\Models\User
      */
     public static function currentUser() {
-        if (isset($_SESSION['user'])) {
-            return $_SESSION['user'];
-        } else {
-            throw new Exception("No current user.");
-        }
+        try {
+            if (isset($_SESSION['user'])) {
+                return $_SESSION['user'];
+            } else {
+                throw new Exception("No current user.");
+            }
+        } catch (Exception $e) {
+            Log::debug("currentUser called on inactive session");
+        }       
     }
 }

@@ -21,5 +21,15 @@ class Request
     public static function method() {
         return $_SERVER['REQUEST_METHOD'];
     }
+    
+    /**
+     * Returns true if uri matches server request
+     *
+     * @param  string $uri
+     * @return bool
+     */
+    public static function active($uri) {
+        return Request::uri() == $uri;
+    }
 
 }

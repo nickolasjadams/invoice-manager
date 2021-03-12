@@ -1,3 +1,8 @@
+<?php
+
+use App\Helpers\Request;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,3 +33,14 @@
     <?php
 	include 'navigation.view.php';
 	?>
+
+	<div id="main-wrapper">
+
+
+		<main>
+
+			<header class="header-bar">
+				<h1><?= $heading ?? "" ?></h1>
+			</header>
+
+			<section class="content">

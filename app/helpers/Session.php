@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Helpers\Facades\Auth;
+
 class Session
 {    
     /**
@@ -15,6 +17,14 @@ class Session
             header('Location: /');
             exit;
         }
+    }
+
+    /**
+     * Provides the session's user object
+     * Alias to Auth::currentUser
+     */
+    public static function user() {
+        return Auth::currentUser();
     }
 
     public static function logout() {
