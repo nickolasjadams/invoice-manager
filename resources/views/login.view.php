@@ -1,7 +1,5 @@
 <?php
 
-use App\Helpers\View;
-
 if (isset($_SESSION['user'])) {
 	header("Location: /dashboard");
 }
@@ -37,7 +35,7 @@ if (isset($_SESSION['user'])) {
 		<section class="form-wrapper">
 
 			<?php
-				include 'partials/login-form.php';
+				include 'partials/login/login-form.view.php';
 				echo '<hr>';
 				echo '<button type="button" class="fw tac btn btn-primary"  data-toggle="modal" data-target="#signupModal">Create an Account</a>';
 			?>
@@ -52,7 +50,7 @@ if (isset($_SESSION['user'])) {
 
 
 	<?php
-		include 'partials/signup-form.php';
+		include 'partials/login/signup-form.view.php';
 	?>
 
 
