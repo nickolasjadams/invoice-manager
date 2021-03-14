@@ -1,3 +1,7 @@
 <?php
 
-echo 'list 1 invoice';
+use App\Helpers\View;
+
+View::render('invoice', [
+    'invoices' => 'hello'
+]);

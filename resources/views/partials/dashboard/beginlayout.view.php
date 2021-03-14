@@ -40,7 +40,13 @@ use App\Helpers\Request;
 		<main>
 
 			<header class="header-bar">
-				<h1><?= $heading ?? "" ?></h1>
+				<?php
+					if (isset($heading)) {
+						echo "<h1>{$heading}</h1>";
+					} else if (isset($back)) {
+						echo "<a class=\"back\" href=\"{$back}\"><i class=\"fas fa-arrow-circle-left fa-2x\"></i></a>";
+					}
+				?>
 			</header>
 
 			<section class="content">
