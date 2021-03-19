@@ -30,5 +30,7 @@ $router->get('invoices', 'app/controllers/invoice/index.php');
 $router->get('invoice', 'app/controllers/invoice/show.php');
 
 $router->get('my-account', 'app/controllers/MyAccountController.php', 'index');
+$router->post('my-account-password', 'app/controllers/MyAccountController.php', 'updatePassword');
+$router->post('my-account-info', 'app/controllers/MyAccountController.php', 'updateInfo');
 
 $router->get('logout', 'app/helpers/Session.php', 'logout');

@@ -1,4 +1,8 @@
-        
+<?php
+
+use App\Helpers\Session;        
+
+?>
 
     </div>
 
@@ -17,3 +21,14 @@
 	?>
 </body>
 </html>
+
+<?php
+
+if (Session::getErrors() > 0) {
+	Session::clearErrors();
+}
+if (Session::getSuccesses() > 0) {
+	Session::clearSuccesses();
+}
+
+?>

@@ -141,8 +141,20 @@
 	label {
 		display: block;
 	}
+	label span {
+		color: $danger;
+	}
 	input, select, textarea {
 		width: 100%;
+	}
+
+	&.invalid {
+		label span {
+			color: $danger;
+		}
+		input, select, textarea {
+			border-color: $danger;
+		}
 	}
 }
 

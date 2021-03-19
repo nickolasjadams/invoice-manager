@@ -1,7 +1,5 @@
 <?php
 
-use App\Helpers\Request;
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

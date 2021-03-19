@@ -9,7 +9,6 @@ class Auth
     /**
      * Returns the current user if a session is active.
      *
-     * @throws Exception Surround with try catch
      * @return App\Models\User
      */
     public static function currentUser() {

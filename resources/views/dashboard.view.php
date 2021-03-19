@@ -9,7 +9,7 @@ include 'partials/dashboard/beginlayout.view.php';
 	<?php if ($account_incomplete): ?>
 	<div class="incomplete-account">
 		<i class="fas fa-exclamation-circle"></i>
-		You haven't finished your account.  Please <a href="myaccount.html">complete your account</a> now.
+		You haven't finished your account.  Please <a href="/my-account">complete your account</a> now.
 	</div>
 	<?php endif ?>
 

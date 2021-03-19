@@ -14,7 +14,7 @@ class Log
     public static function info($message) 
     {
         $logger = new Logger(Path::root() . '/logs');
-        $logger->logger->info($message);
+        $logger->info($message);
     }
 
     public static function error($message) 

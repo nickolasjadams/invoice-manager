@@ -278,6 +278,21 @@ body.loggedin main section.content {
   padding: 40px;
   min-height: calc(100vh - 54px);
 }
+body.loggedin main section.content h2 {
+  margin: 40px 0;
+}
+body.loggedin main section.content hr {
+  margin: 40px 0;
+  background: rgba(108, 77, 238, 0.2);
+}
+body.loggedin main section.content .btn {
+  margin: 0;
+}
+body.loggedin main section.content .alert {
+  position: fixed;
+  top: 85px;
+  width: calc(100% - 330px);
+}
 body.loggedin footer {
   position: relative;
   top: 54px;
@@ -1758,8 +1773,17 @@ body.loggedin footer {
 .form-element label {
   display: block;
 }
+.form-element label span {
+  color: #dc3545;
+}
 .form-element input, .form-element select, .form-element textarea {
   width: 100%;
+}
+.form-element.invalid label span {
+  color: #dc3545;
+}
+.form-element.invalid input, .form-element.invalid select, .form-element.invalid textarea {
+  border-color: #dc3545;
 }
 
 .success {

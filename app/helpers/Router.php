@@ -95,8 +95,11 @@ class Router
      * @param  mixed $uri
      * @param  mixed $controller
      */
-    public function post($uri, $controller) {
+    public function post($uri, $controller, $method = null) {
         $controller = Path::root(5) . '/' . $controller;
+        if ($method != null) {
+            $controller .= '@' . $method;
+        }
         $this->routes['POST'][$uri] = $controller;
     }
 }
