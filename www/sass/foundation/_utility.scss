@@ -73,7 +73,7 @@
 // Margin and padding
 // full, top, right, bottom, left, horizontal, vertical
 
-@for $i from 1 through 20 {
+@for $i from 0 through 20 {
 	.m#{$i*5} {
 		margin: #{$i*5}px;
 	}
@@ -98,7 +98,7 @@
 		margin-bottom: #{$i*5}px;
 	}
 }
-@for $i from 1 through 20 {
+@for $i from 0 through 20 {
 	.p#{$i*5} {
 		padding: #{$i*5}px;
 	}

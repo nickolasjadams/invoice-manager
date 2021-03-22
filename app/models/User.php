@@ -16,7 +16,7 @@ class User extends Model
     
     protected $id, $admin, $verified, $active;
 
-    public $email, $first_name, $last_name, $company_name, $logo,
+    public $user_id, $email, $first_name, $last_name, $company_name, $logo,
         $phone, $address, $suite, $city, $state, $zip, $created_at;
         
     /**
@@ -90,6 +90,10 @@ class User extends Model
         $statement->bindParam(":password", $this->password);
         $statement->execute();
         $db = null;
+    }
+
+    public function isAdmin() {
+        return $this->admin;
     }
     
     /**

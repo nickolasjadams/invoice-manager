@@ -161,7 +161,7 @@ include 'partials/dashboard/beginlayout.view.php';
 
 	<h2>Company Logo</h2>
 	<form class="settings-form" action="/upload-logo" method="post" enctype="multipart/form-data">
-		<img src="/images/logo.png" alt="">
+		<img src="<?= $user->logo ?>" alt="">
 		<input type="file" id="logo_upload" name="logo_upload">
 		<button type="submit" class="btn btn-primary">Upload</button>
 		

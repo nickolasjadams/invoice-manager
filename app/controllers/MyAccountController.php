@@ -103,6 +103,8 @@ class MyAccountController
 
             $email = Session::user()->email;
 
+            d($email);
+
             $user = User::where('email', '=', $email)[0];
 
             Session::clearErrors();

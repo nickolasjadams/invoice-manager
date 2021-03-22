@@ -410,6 +410,165 @@ body.loggedin footer {
   top: 70px;
 }
 
+/*!
+ * TableCloth v1.0.0
+ * Copyright (c) 2018 Nick Adams
+ * Licenced under the MIT license.
+ *
+ * A tiny front-end framework for attractive tables out of the box
+ */
+.twoCol tr td:nth-child(1), .inception tr td:nth-child(1) {
+  width: 47%;
+}
+.twoCol tr td:nth-child(2), .inception tr td:nth-child(2) {
+  width: 26.5%;
+}
+
+.threeCol tr td:nth-child(1), .inception tr td:nth-child(1) {
+  width: 47%;
+}
+.threeCol tr td:nth-child(2), .inception tr td:nth-child(2) {
+  width: 26.5%;
+}
+
+.fourCol tr td:nth-child(1), .inception tr td:nth-child(1) {
+  width: 47%;
+}
+.fourCol tr td:nth-child(2), .inception tr td:nth-child(2) {
+  width: 26.5%;
+}
+
+table:not(.invoice-info) td {
+  font-size: 1.2em;
+}
+table:not(.invoice-info) tr:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+table:not(.invoice-info), .inception {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+}
+table:not(.invoice-info) *, .inception * {
+  box-sizing: border-box;
+}
+table:not(.invoice-info) caption, .inception caption {
+  color: #ffffff;
+  background: #333;
+  background: #6c4dee;
+  border-bottom: 1px solid #fff;
+  text-align: left;
+  caption-side: top;
+  width: calc(100% - 1px);
+  padding: 10px;
+  font-size: 1.25em;
+  letter-spacing: 1px;
+}
+
+table.twoCol.l-c td, .inception.twoCol.l-c td {
+  text-align: left !important;
+}
+
+table.twoCol.lr-c td:nth-child(1), .inception.twoCol.lr-c td:nth-child(1) {
+  text-align: left !important;
+}
+
+table.twoCol.lr-c td:nth-child(2), .inception.twoCol.lr-c td:nth-child(2) {
+  text-align: right !important;
+}
+
+table.twoCol.lc-c td:nth-child(1), .inception.twoCol.lc-c td:nth-child(1) {
+  text-align: left !important;
+}
+
+table.twoCol.lc-c td:nth-child(2), .inception.twoCol.lc-c td:nth-child(2) {
+  text-align: center !important;
+}
+
+table.twoCol.c-c td, .inception.twoCol.c-c td {
+  text-align: center !important;
+}
+
+table.twoCol.cl-c td:nth-child(1), .inception.twoCol.cl-c td:nth-child(1) {
+  text-align: center !important;
+}
+
+table.twoCol.cl-c td:nth-child(2), .inception.twoCol.cl-c td:nth-child(2) {
+  text-align: left !important;
+}
+
+table.twoCol.cr-c td:nth-child(1), .inception.twoCol.cr-c td:nth-child(1) {
+  text-align: center !important;
+}
+
+table.twoCol.cr-c td:nth-child(2), .inception.twoCol.cr-c td:nth-child(2) {
+  text-align: right !important;
+}
+
+table.twoCol.r-c td, .inception.twoCol.r-c td {
+  text-align: right !important;
+}
+
+table.twoCol.rl-c td:nth-child(1), .inception.twoCol.rl-c td:nth-child(1) {
+  text-align: right !important;
+}
+
+table.twoCol.rl-c td:nth-child(2), .inception.twoCol.rl-c td:nth-child(2) {
+  text-align: left !important;
+}
+
+table.twoCol.rc-c td:nth-child(1), .inception.twoCol.rc-c td:nth-child(1) {
+  text-align: right !important;
+}
+
+table.twoCol.rc-c td:nth-child(2), .inception.twoCol.rc-c td:nth-child(2) {
+  text-align: center !important;
+}
+
+table:not(.invoice-info) td:first-child, table:not(.invoice-info) th:first-child {
+  text-align: left;
+}
+
+.inception td:first-child {
+  padding-left: 30px;
+  text-align: left;
+}
+
+table:not(.invoice-info) td, table:not(.invoice-info) th {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 0;
+  border-bottom: 0;
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.inception td, .inception th {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 0;
+  border-bottom: 0;
+  padding: 8px 10px;
+}
+
+table:not(.invoice-info) th {
+  background: #333;
+  background: #6c4dee;
+  color: #fff;
+}
+
+table:not(.invoice-info) tr:nth-child(odd), .inception tr:nth-child(odd) {
+  background: #eee;
+}
+
+table:not(.invoice-info) tr.hr, .inception tr.hr {
+  border-bottom: 4px solid #6c4dee;
+}
+
+table:not(.invoice-info) .foot {
+  background: #333;
+  color: #fff;
+}
+
 .fw {
   width: 100%;
 }
@@ -554,6 +713,36 @@ body.loggedin footer {
 
 .f-right {
   float: right;
+}
+
+.m0 {
+  margin: 0px;
+}
+
+.mt0 {
+  margin-top: 0px;
+}
+
+.mr0 {
+  margin-right: 0px;
+}
+
+.mb0 {
+  margin-bottom: 0px;
+}
+
+.ml0 {
+  margin-left: 0px;
+}
+
+.mh0 {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.mv0 {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .m5 {
@@ -1154,6 +1343,36 @@ body.loggedin footer {
 .mv100 {
   margin-top: 100px;
   margin-bottom: 100px;
+}
+
+.p0 {
+  padding: 0px;
+}
+
+.pt0 {
+  padding-top: 0px;
+}
+
+.pr0 {
+  padding-right: 0px;
+}
+
+.pb0 {
+  padding-bottom: 0px;
+}
+
+.pl0 {
+  padding-left: 0px;
+}
+
+.ph0 {
+  padding-left: 0px;
+  margin-right: 0px;
+}
+
+.pv0 {
+  padding-top: 0px;
+  margin-bottom: 0px;
 }
 
 .p5 {
@@ -1796,165 +2015,6 @@ body.loggedin footer {
 
 .danger {
   color: #dc3545;
-}
-
-/*!
- * TableCloth v1.0.0
- * Copyright (c) 2018 Nick Adams
- * Licenced under the MIT license.
- *
- * A tiny front-end framework for attractive tables out of the box
- */
-.twoCol tr td:nth-child(1), .inception tr td:nth-child(1) {
-  width: 47%;
-}
-.twoCol tr td:nth-child(2), .inception tr td:nth-child(2) {
-  width: 26.5%;
-}
-
-.threeCol tr td:nth-child(1), .inception tr td:nth-child(1) {
-  width: 47%;
-}
-.threeCol tr td:nth-child(2), .inception tr td:nth-child(2) {
-  width: 26.5%;
-}
-
-.fourCol tr td:nth-child(1), .inception tr td:nth-child(1) {
-  width: 47%;
-}
-.fourCol tr td:nth-child(2), .inception tr td:nth-child(2) {
-  width: 26.5%;
-}
-
-table:not(.invoice-info) td {
-  font-size: 1.2em;
-}
-table:not(.invoice-info) tr:last-child {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-table:not(.invoice-info), .inception {
-  width: 100%;
-  margin: 0;
-  border-collapse: collapse;
-}
-table:not(.invoice-info) *, .inception * {
-  box-sizing: border-box;
-}
-table:not(.invoice-info) caption, .inception caption {
-  color: #ffffff;
-  background: #333;
-  background: #6c4dee;
-  border-bottom: 1px solid #fff;
-  text-align: left;
-  caption-side: top;
-  width: calc(100% - 1px);
-  padding: 10px;
-  font-size: 1.25em;
-  letter-spacing: 1px;
-}
-
-table.twoCol.l-c td, .inception.twoCol.l-c td {
-  text-align: left !important;
-}
-
-table.twoCol.lr-c td:nth-child(1), .inception.twoCol.lr-c td:nth-child(1) {
-  text-align: left !important;
-}
-
-table.twoCol.lr-c td:nth-child(2), .inception.twoCol.lr-c td:nth-child(2) {
-  text-align: right !important;
-}
-
-table.twoCol.lc-c td:nth-child(1), .inception.twoCol.lc-c td:nth-child(1) {
-  text-align: left !important;
-}
-
-table.twoCol.lc-c td:nth-child(2), .inception.twoCol.lc-c td:nth-child(2) {
-  text-align: center !important;
-}
-
-table.twoCol.c-c td, .inception.twoCol.c-c td {
-  text-align: center !important;
-}
-
-table.twoCol.cl-c td:nth-child(1), .inception.twoCol.cl-c td:nth-child(1) {
-  text-align: center !important;
-}
-
-table.twoCol.cl-c td:nth-child(2), .inception.twoCol.cl-c td:nth-child(2) {
-  text-align: left !important;
-}
-
-table.twoCol.cr-c td:nth-child(1), .inception.twoCol.cr-c td:nth-child(1) {
-  text-align: center !important;
-}
-
-table.twoCol.cr-c td:nth-child(2), .inception.twoCol.cr-c td:nth-child(2) {
-  text-align: right !important;
-}
-
-table.twoCol.r-c td, .inception.twoCol.r-c td {
-  text-align: right !important;
-}
-
-table.twoCol.rl-c td:nth-child(1), .inception.twoCol.rl-c td:nth-child(1) {
-  text-align: right !important;
-}
-
-table.twoCol.rl-c td:nth-child(2), .inception.twoCol.rl-c td:nth-child(2) {
-  text-align: left !important;
-}
-
-table.twoCol.rc-c td:nth-child(1), .inception.twoCol.rc-c td:nth-child(1) {
-  text-align: right !important;
-}
-
-table.twoCol.rc-c td:nth-child(2), .inception.twoCol.rc-c td:nth-child(2) {
-  text-align: center !important;
-}
-
-table:not(.invoice-info) td:first-child, table:not(.invoice-info) th:first-child {
-  text-align: left;
-}
-
-.inception td:first-child {
-  padding-left: 30px;
-  text-align: left;
-}
-
-table:not(.invoice-info) td, table:not(.invoice-info) th {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-top: 0;
-  border-bottom: 0;
-  padding: 8px 10px;
-  text-align: center;
-}
-
-.inception td, .inception th {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-top: 0;
-  border-bottom: 0;
-  padding: 8px 10px;
-}
-
-table:not(.invoice-info) th {
-  background: #333;
-  background: #6c4dee;
-  color: #fff;
-}
-
-table:not(.invoice-info) tr:nth-child(odd), .inception tr:nth-child(odd) {
-  background: #eee;
-}
-
-table:not(.invoice-info) tr.hr, .inception tr.hr {
-  border-bottom: 4px solid #6c4dee;
-}
-
-table:not(.invoice-info) .foot {
-  background: #333;
-  color: #fff;
 }
 
 /*# sourceMappingURL=styles.css.map */

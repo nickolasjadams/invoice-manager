@@ -15,9 +15,9 @@ abstract class Status {
 class Invoice extends Model
 {
     
-    protected $id, $user_id;
+    protected $id;
 
-    public $status, $due_at, $subtotal_amount, $discount, $taxes,
+    public $user_id, $status, $due_at, $subtotal_amount, $discount, $taxes,
         $total_amount, $summary, $admin_note, $client_note;
     
     public function create($due_at, $subtotal_amount, $total_amount) {
@@ -39,6 +39,18 @@ class Invoice extends Model
         $statement->bindParam(":total_amount", $this->total_amount);
         $statement->execute();
         $db = null;
+    }
+
+    public function companyName($user_id = null) {
+        if ($user_id === null) {
+            $user = $this->user;
+        }
+        $user = User::where('id', '=', $user_id)[0];
+        return $user->company_name;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
     }
 
 }

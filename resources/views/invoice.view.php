@@ -8,32 +8,56 @@ include 'partials/dashboard/beginlayout.view.php';
 
 <section class="invoice-wrapper">
 
-    <div class="invoice-header">
-        <div class="left">
-            <h2>Company Name</h2>
-            <address>
-                address1<br>
-                phone<br>
-                website
-            </address>
+    <?php if ($invoice === null) : ?>
+        <p>No invoice to display.</p>
+    
+    <?php else : ?>
+
+        
+
+        <div class="invoice-header">
+            <div class="left">
+                <h2><?= $user->company_name; ?></h2>
+                <address>
+                    <!-- 
+                        This is a scenario where break tags are appropriate.
+                     -->
+                    <?= ($user->address != null) ? $user->address . '<br>' : ''; ?>
+                    <?= ($user->suite != null) ? $user->suite . '<br>' : ''; ?>
+                    <?php if (isset($user->city) && isset($user->state) && isset($user->zip)) {
+                        echo "{$user->city} {$user->state}, {$user->zip}<br>";
+                    }
+                    ?>
+                    <?= ($user->phone != null) ? $user->phone . '<br>' : ''; ?>
+                </address>
+            </div>
+            <div class="right">
+                <table class="invoice-info">
+                    <tr>
+                        <td>ID:</td>
+                        <td>
+                            <?php
+                            // TODO: would like to prepend zeros.  Will do that later with code I wrote earlier this semester. 0000X
+                            echo $invoice->id();
+                            ?>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td>Amount:</td>
+                        <td>$<?= $invoice->total_amount ?></td>
+                    </tr>
+                    <tr>
+                        <td>Due:</td>
+                        <td><?= $invoice->due_at; ?></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <div class="right">
-            <table class="invoice-info">
-                <tr>
-                    <td>ID:</td>
-                    <td>0000X</td>
-                </tr>
-                <tr>
-                    <td>Amount:</td>
-                    <td>$500.00</td>
-                </tr>
-                <tr>
-                    <td>Due:</td>
-                    <td>0x/30/2021</td>
-                </tr>
-            </table>
-        </div>
-    </div>
+
+
+    <?php endif ?>
+
+    
     
 
 </section>
