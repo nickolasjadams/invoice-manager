@@ -1,5 +1,4 @@
 <?php
-use App\Helpers\Session;
 $title = 'View Invoices';
 $css = [];
 $js = [];

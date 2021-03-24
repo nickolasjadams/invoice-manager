@@ -33,6 +33,15 @@ function sanitize($str) {
     return trim(htmlspecialchars($str));
 }
 
+/**
+ * A templating function that returns an emoji for a boolean value.
+ * 
+ * @param bool $value
+ */
+function boolean_emoji($value) {
+    return ($value) ? '&#9989;' : '&#10060;';
+}
+
 
 /**
  * A templating function to echo our form errors.

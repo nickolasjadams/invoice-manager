@@ -8,15 +8,14 @@ use App\Models\Model;
 use Database\Connection as DB;
 use App\Helpers\Session;
 use Exception;
+use PDO;
 
 class User extends Model
 {
 
-    private $password;
-    
-    protected $id, $admin, $verified, $active;
+    private $password, $admin;
 
-    public $user_id, $email, $first_name, $last_name, $company_name, $logo,
+    public $id, $verified, $active, $email, $first_name, $last_name, $company_name, $logo,
         $phone, $address, $suite, $city, $state, $zip, $created_at;
         
     /**
@@ -67,6 +66,67 @@ class User extends Model
      */
     public function password() {
         return $this->password;
+    }
+
+    /**
+     * Returns the verified status.
+     *
+     * @return bool verified
+     */
+    public function verified() {
+        return ($this->verified) ? true : false;
+    }
+
+    /**
+     * Admin function: verify a client.
+     * @param mixed $id
+     */
+    public static function verify($id) {
+        if (Session::user()->isAdmin() && is_numeric($id)) {
+            $db = DB::make();
+            $statement = $db->prepare(
+                'UPDATE users ' .
+                '   SET verified = 1' .
+                '   WHERE id = ' . $id
+            );
+            $statement->execute();
+            $db = null;
+        }
+    }
+
+    public static function toggleActive($id) {
+        if (Session::user()->isAdmin() && is_numeric($id)) {
+            $db = DB::make();
+            $fetchStatement = $db->prepare('SELECT active from users WHERE id = (:id)');
+            $fetchStatement->bindParam(':id', $id);
+            $fetchStatement->execute();
+            $active_status = $fetchStatement->fetchAll(PDO::FETCH_ASSOC)[0]['active'];
+            if ($active_status == 0) {
+                $active_status = 1;
+            } else {
+                $active_status = 0;
+            }
+
+            $statement = $db->prepare(
+                'UPDATE users ' .
+                '   SET active = (:active)' .
+                '   WHERE id = (:id)'
+            );
+            $statement->bindParam(':active', $active_status);
+            $statement->bindParam(':id', $id);
+            $statement->execute();
+            $db = null;
+            return $active_status;
+        }
+    }
+
+    /**
+     * Returns the active status.
+     *
+     * @return bool active
+     */
+    public function active() {
+        return ($this->active) ? true : false;
     }
 
         

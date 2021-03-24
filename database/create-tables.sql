@@ -15,7 +15,7 @@ CREATE TABLE users (
   admin BOOLEAN DEFAULT false,
   verified BOOLEAN DEFAULT false,
   active BOOLEAN DEFAULT false,
-  created_at TIMESTAMP
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE settings (

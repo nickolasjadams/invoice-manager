@@ -4,7 +4,6 @@ namespace App\Helpers;
 
 use App\Helpers\Facades\Auth;
 use App\Helpers\Facades\Log;
-use Exception;
 
 class Session
 {    
