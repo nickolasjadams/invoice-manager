@@ -1,5 +1,7 @@
 <?php
 
+use App\Helpers\Session;
+
 if (isset($_SESSION['user'])) {
 	header("Location: /dashboard");
 }
@@ -35,6 +37,11 @@ if (isset($_SESSION['user'])) {
 		<section class="form-wrapper">
 
 			<?php
+
+				if (isset($errors['login_mismatch'])) {
+					bs4_alert("danger", $errors['login_mismatch']);
+				}
+
 				include 'partials/login/login-form.view.php';
 				echo '<hr>';
 				echo '<button type="button" class="fw tac btn btn-primary"  data-toggle="modal" data-target="#signupModal">Create an Account</a>';
@@ -63,3 +70,6 @@ if (isset($_SESSION['user'])) {
 </body>
 </html>
 
+<?php
+Session::clearErrors();
+?>

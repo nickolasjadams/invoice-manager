@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Helpers\Session;
 use App\Models\User;
+use Exception;
 
 class UserController
 {
@@ -14,7 +15,7 @@ class UserController
 
     public function index() {
 
-        // TODO Sanitize input
+        Session::clearErrors();
 
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -23,22 +24,22 @@ class UserController
 
         // Try to find a matching user.
         if (count($user_search) === 0) {
-            echo '<div>no user found<div>';
-            echo "<img src='https://media.tenor.com/images/b9d6a7ed15a2865b1a058eaa42826cb7/tenor.gif'>";  
-            die();
+            Session::pushError('login_mismatch', 'Incorrect email or password.');
+            header('Location: /login');
+            exit;
         }
 
         // Check the password.
         $user = $user_search[0];
         if (password_verify($password, $user->password())) {
+            Session::clearErrors();
             $_SESSION['user'] = $user;
             header('Location: /dashboard');
             exit;
-            die();
         } else {
-            echo 'password mismatch';
-            echo '<img src="https://media1.tenor.com/images/c8c06e5efd412a8e8c6b14f1748c6185/tenor.gif">';
-            die();
+            Session::pushError('login_mismatch', 'Incorrect email or password.');
+            header('Location: /login');
+            exit;
             
         }
 
@@ -47,8 +48,6 @@ class UserController
     }
 
     public function store() {
-
-        // TODO Sanitize input
 
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
