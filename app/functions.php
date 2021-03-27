@@ -77,12 +77,6 @@ function invalid_form_element($key) {
  */
 function persisted_or_stored($posted_key, $stored_key) {
 
-    // mock_post([
-    //     'email' => 'poop'
-    // ]);
-    // Session::snapshotFormData();
-    // Session::clearFormData();
-
     $form_data = Session::getFormData();
     if (isset($form_data[$posted_key])) {
         echo $form_data[$posted_key];
@@ -90,6 +84,21 @@ function persisted_or_stored($posted_key, $stored_key) {
         echo $stored_key;
     }
     
+    
+}
+
+/**
+ * A templating function to update with previous session form data
+ * if post fails with errors.
+ *
+ * @param  mixed $value
+ */
+function persisted($posted_key) {
+
+    $form_data = Session::getFormData();
+    if (isset($form_data[$posted_key])) {
+        echo $form_data[$posted_key];
+    }
     
 }
 

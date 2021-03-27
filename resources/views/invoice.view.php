@@ -17,21 +17,29 @@ include 'partials/dashboard/beginlayout.view.php';
 
         <div class="invoice-header">
             <div class="left">
-                <h2><?= $user->company_name; ?></h2>
+                <div><strong>From: </strong></div>
+                <div>Nick Adams</div>
                 <address>
+                    123 NotMyRealAddress St.<br>
+                    Boise ID, 83706
+                </address>
+                <div class="status"><?= $invoice->status; ?></div>
+            </div>
+            <div class="right">
+                <div><strong>To: </strong></div>
+                <div><?= $invoice->company_name; ?></div>
+                <address>    
                     <!-- 
                         This is a scenario where break tags are appropriate.
                      -->
-                    <?= ($user->address != null) ? $user->address . '<br>' : ''; ?>
-                    <?= ($user->suite != null) ? $user->suite . '<br>' : ''; ?>
-                    <?php if (isset($user->city) && isset($user->state) && isset($user->zip)) {
-                        echo "{$user->city} {$user->state}, {$user->zip}<br>";
+                    <?= ($invoice->address != null) ? $invoice->address . '<br>' : ''; ?>
+                    <?= ($invoice->suite != null) ? $invoice->suite . '<br>' : ''; ?>
+                    <?php if (isset($invoice->city) && isset($invoice->state) && isset($invoice->zip)) {
+                        echo "{$invoice->city} {$invoice->state}, {$invoice->zip}<br>";
                     }
                     ?>
                     <?= ($user->phone != null) ? $user->phone . '<br>' : ''; ?>
                 </address>
-            </div>
-            <div class="right">
                 <table class="invoice-info">
                     <tr>
                         <td>ID:</td>
@@ -51,6 +59,15 @@ include 'partials/dashboard/beginlayout.view.php';
                         <td><?= $invoice->due_at; ?></td>
                     </tr>
                 </table>
+            </div>
+        </div>
+        <div class="invoice-body">
+            <!-- Stretch goals. Line items go here. -->
+
+            
+            <div class="summary mt20">
+                <div>Summary: </div>
+                <?= $invoice->summary; ?>
             </div>
         </div>
 

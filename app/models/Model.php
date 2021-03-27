@@ -14,11 +14,22 @@ abstract class Model
      * Assumes that table name is a lowercase plural match of the model classname.
      * For example: db.users -> App\Models\User
      *
+     * @param $orderby optional column
+     * @param $sort optional 'ASC', or 'DESC'
      * @return array
      */
-    public static function all() {
+    public static function all($orderby = null, $sort = null) {
         $db = DB::make();
-        $statement = $db->prepare('select * from ' . self::dbTableName());
+        if ($orderby != null) {
+            if ($sort == "ASC" || $sort == null) {
+                $statement = $db->prepare('select * from ' . self::dbTableName() . " ORDER BY {$orderby};");
+            } else if ($sort == "DESC") {
+                $statement = $db->prepare('select * from ' . self::dbTableName() . " ORDER BY {$orderby} {$sort};");
+            }
+            
+        } else  {
+            $statement = $db->prepare('select * from ' . self::dbTableName());
+        }
         $statement->execute();
         self::$records = $statement->fetchAll(PDO::FETCH_CLASS, get_called_class());
         $db = null; // close connection

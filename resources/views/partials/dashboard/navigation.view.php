@@ -28,12 +28,12 @@ use App\Helpers\Session;
             </li>
             <li class="<?= Request::active('invoices') ? ' active' : ''; ?>">
                 <a href="/invoices">
-                    <i class="fas fa-envelope-open-text" title="My Account"></i><span class="word">View Invoices</span>
+                    <i class="fas fa-envelope-open-text" title="View Invoices"></i><span class="word">View Invoices</span>
                 </a>
             </li>
-            <li class="<?= Request::active('invoices-send') ? ' active' : ''; ?>">
-                <a href="/invoice-send">
-                    <i class="fas fa-paper-plane" title="My Account"></i><span class="word">Send Invoice</span>
+            <li class="<?= Request::active('create') ? ' active' : ''; ?>">
+                <a href="/create">
+                    <i class="fas fa-paper-plane" title="Send Invoice"></i><span class="word">Send Invoice</span>
                 </a>
             </li>
         <?php else : ?>

@@ -25,9 +25,9 @@ $router->post('signup', 'app/controllers/user/store.php');
 
 $router->get('dashboard', 'app/controllers/dashboard.php');
 
-$router->get('invoices', 'app/controllers/invoice/index.php');
+$router->get('invoices', 'app/controllers/InvoiceController.php', 'index');
 
-$router->get('invoice', 'app/controllers/invoice/show.php');
+$router->get('invoice', 'app/controllers/InvoiceController.php', 'show');
 
 $router->get('my-account', 'app/controllers/MyAccountController.php', 'index');
 $router->post('my-account-password', 'app/controllers/MyAccountController.php', 'updatePassword');
@@ -39,6 +39,8 @@ $router->get('logout', 'app/helpers/Session.php', 'logout');
  * Admin routes
  */
 $router->get('partners', 'app/controllers/PartnersController.php', 'index');
+$router->get('create', 'app/controllers/InvoiceController.php', 'create');
+$router->post('send', 'app/controllers/InvoiceController.php', 'send');
 
 /**
  * API

@@ -47,15 +47,12 @@ class MyAccountController
             // Validate
             if (!password_verify($old_password, $user->password())) {
                 Session::pushError('old_password', 'Incorrect password.');
-                echo '1';
             }
             if ($user->password() === $new_password) {
                 Session::pushError('new_password', 'Cannot match old password.');
-                echo '2';
             }
             if ($new_password !== $confirm_password) {
                 Session::pushError('confirm_password', 'Does not match new password.');
-                echo '3';
             }
             if (count(Session::getErrors()) > 0) {
                 header("Location: /my-account");
@@ -102,8 +99,6 @@ class MyAccountController
             }
 
             $email = Session::user()->email;
-
-            d($email);
 
             $user = User::where('email', '=', $email)[0];
 

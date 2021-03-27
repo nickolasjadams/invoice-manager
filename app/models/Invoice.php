@@ -4,13 +4,7 @@ namespace App\Models;
 
 use App\Models\Model;
 use Database\Connection as DB;
-
-abstract class Status {
-    const DRAFT     = 'draft';
-    const SENT      = 'sent';
-    const CANCELLED = 'cancelled';
-    const UNPAID    = 'unpaid';
-}
+use PDO;
 
 class Invoice extends Model
 {
@@ -19,6 +13,9 @@ class Invoice extends Model
 
     public $user_id, $status, $due_at, $subtotal_amount, $discount, $taxes,
         $total_amount, $summary, $admin_note, $client_note;
+
+    // user specific details
+    public $company_name, $name, $email, $phone, $address, $suite, $city, $state, $zip;
     
     public function create($due_at, $subtotal_amount, $total_amount) {
         $this->due_at = $due_at;
@@ -53,4 +50,28 @@ class Invoice extends Model
         $this->id = $id;
     }
 
+    public function joinUserInfo($user_id) {
+        $db = DB::make();
+        $statement = $db->prepare(
+            "SELECT " .
+            "company_name, CONCAT(first_name, ' ', last_name) as name, email, phone, address, suite, city, state, zip FROM users " .
+            "WHERE users.id = (:user_id);"
+        );
+        $statement->bindParam(':user_id', $user_id);
+        $statement->execute();
+        $user = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+        $this->company_name = $user['company_name'];
+        $this->name = $user['name'];
+        $this->email = $user['email'];
+        $this->phone = $user['phone'];
+        $this->address = $user['address'];
+        $this->suite = $user['suite'];
+        $this->city = $user['city'];
+        $this->state = $user['state'];
+        $this->zip = $user['zip'];
+        $db = null; // close connection
+        return $this;
+    }
+
 }
+

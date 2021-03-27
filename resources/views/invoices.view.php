@@ -4,6 +4,10 @@ $css = [];
 $js = [];
 $heading = "Invoices";
 include 'partials/dashboard/beginlayout.view.php';
+
+if (isset($successes['invoice_created'])) {
+    bs4_alert("success", $successes['invoice_created']);
+}
 ?>
 
 <table>
