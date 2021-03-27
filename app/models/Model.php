@@ -47,8 +47,9 @@ abstract class Model
     public static function where($column, $equality_operator, $value) {
         $db = DB::make();
         $sql  = 'SELECT * FROM ' . self::dbTableName() .
-                ' WHERE ' . $column . ' ' . $equality_operator . ' \'' . $value . '\';';
+                ' WHERE ' . $column . ' ' . $equality_operator  . "(:value)" . ';';
         $statement = $db->prepare($sql);
+        $statement->bindParam(':value', $value);
         $statement->execute();
         self::$records = $statement->fetchAll(PDO::FETCH_CLASS, get_called_class());
         $db = null; // close connection

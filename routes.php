@@ -11,10 +11,11 @@ $router->get('', 'app/controllers/login.php');
 $router->get('login', 'app/controllers/login.php');
 
 // user logging in
-$router->post('login', 'app/controllers/user/index.php');
+// $router->post('login', 'app/controllers/user/index.php');
+$router->post('login', 'app/controllers/UserController.php', 'index');
 
 // user signing up
-$router->post('signup', 'app/controllers/user/store.php');
+$router->post('signup', 'app/controllers/UserController.php', 'store');
 
 
 
