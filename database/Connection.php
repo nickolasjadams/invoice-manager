@@ -28,21 +28,23 @@ class Connection
             }
         }
 
-        if (file_exists(Path::root() . "/.env")) {
+        // if (file_exists(Path::root() . "/.env")) {
             $connection_details = [
                 'name' => getenv('DB_NAME'),
                 'user' => getenv('DB_USER'),
                 'password' => getenv('DB_PASSWORD'),
                 'host' => getenv('DB_HOST')
             ];
-        } else {
-            $connection_details = [
-                'name' => $_ENV['DB_NAME'],
-                'user' => $_ENV('DB_USER'),
-                'password' => $_ENV('DB_PASSWORD'),
-                'host' => $_ENV('DB_HOST')
-            ];
-        }
+        // } else {
+        //     dd($_ENV);
+        //     $connection_details = [
+        //         'name' => $_ENV['DB_NAME'],
+        //         'user' => $_ENV('DB_USER'),
+        //         'password' => $_ENV('DB_PASSWORD'),
+        //         'host' => $_ENV('DB_HOST')
+        //     ];
+        //     dd('here');
+        // }
 
         
         return (object) $connection_details;
