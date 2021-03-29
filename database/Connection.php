@@ -3,6 +3,7 @@
 namespace Database;
 
 use App\Helpers\Facades\Log;
+use App\Helpers\Path;
 use \Exception;
 use \PDO;
 use \PDOException;
@@ -27,7 +28,7 @@ class Connection
             }
         }
 
-        if (file_exists("../.env")) {
+        if (file_exists(Path::root() . "/.env")) {
             $connection_details = [
                 'name' => getenv('DB_NAME'),
                 'user' => getenv('DB_USER'),
