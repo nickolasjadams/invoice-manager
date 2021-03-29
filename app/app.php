@@ -5,6 +5,9 @@ use Database\Connection;
 
 require 'functions.php';
 
-(new DotEnv('../.env'))->load();
+if (file_exists('../.env')) {
+    // development
+    (new DotEnv('../.env'))->load();
+}
 
 Connection::make();

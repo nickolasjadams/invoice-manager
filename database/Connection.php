@@ -17,7 +17,7 @@ class Connection
         $mandatory = [ 'DB_NAME', 'DB_USER', 'DB_PASSWORD', 'DB_HOST' ];
         foreach($mandatory as $detail) {
             try {
-                if (getenv($detail) === false) {
+                if (getenv($detail) === false || $_ENV[$detail] === false) {
                     throw new Exception('Missing Connection Details');
                 }
             } catch (Exception $e) {
@@ -27,12 +27,22 @@ class Connection
             }
         }
 
-        $connection_details = [
-            'name' => getenv('DB_NAME'),
-            'user' => getenv('DB_USER'),
-            'password' => getenv('DB_PASSWORD'),
-            'host' => getenv('DB_HOST')
-        ];
+        if (file_exists("../.env")) {
+            $connection_details = [
+                'name' => getenv('DB_NAME'),
+                'user' => getenv('DB_USER'),
+                'password' => getenv('DB_PASSWORD'),
+                'host' => getenv('DB_HOST')
+            ];
+        } else {
+            $connection_details = [
+                'name' => $_ENV['DB_NAME'],
+                'user' => $_ENV('DB_USER'),
+                'password' => $_ENV('DB_PASSWORD'),
+                'host' => $_ENV('DB_HOST')
+            ];
+        }
+
         
         return (object) $connection_details;
     }
