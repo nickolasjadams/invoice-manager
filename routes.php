@@ -4,8 +4,6 @@
  * Login Page
  */
 
-use App\Middleware\UserAuthentication;
-
 // show login page
 $router->get('', 'app/controllers/login.php');
 $router->get('login', 'app/controllers/login.php');
