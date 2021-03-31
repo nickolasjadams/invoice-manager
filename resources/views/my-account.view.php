@@ -157,8 +157,9 @@ include 'partials/dashboard/beginlayout.view.php';
 
 	</form>
 
-	<hr>
+	<?php /* TODO Add a logo upload controller method.
 
+	<hr>
 	<h2>Company Logo</h2>
 	<form class="settings-form" action="/upload-logo" method="post" enctype="multipart/form-data">
 		<img src="<?= $user->logo ?>" alt="">
@@ -167,6 +168,7 @@ include 'partials/dashboard/beginlayout.view.php';
 		
 
 	</form>
+	 */ ?>
 	
 
 <?php

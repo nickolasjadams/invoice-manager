@@ -11,7 +11,7 @@ include 'partials/dashboard/beginlayout.view.php';
 
 <?php
 
-    d($form_data);
+    d($errors);
 
 	if (isset($errors['required_fields'])) {
 		bs4_alert("danger", $errors['required_fields']);
@@ -26,15 +26,16 @@ include 'partials/dashboard/beginlayout.view.php';
     <div class="form-element">
         <label for="status">Status</label>
         <select name="status" id="status" required>
+        <?php /* TODO Add draft editing features. Then uncomment this.
             <option value="draft" 
-            <?php
+            
                 if (isset($form_data['status'])) {
                     if ($form_data['status'] == 'draft')  {
                         echo 'selected';
                     }
                 }
             ?>
-            >Draft</option>
+            >Draft</option><?php */ ?>
             <option value="sent"
             <?php
                 if (isset($form_data['status'])) {

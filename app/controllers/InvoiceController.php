@@ -132,12 +132,31 @@ class InvoiceController
                 $statusTypes = (new ReflectionClass(Status::class))->getConstants();
 
                 if (!in_array($_POST['status'], $statusTypes)) {
-                    Session::pushError('status', 'Must use a status from the selection.');
+                    Session::pushError('status', 'Must use a status from the selection. ');
                 }
 
-                $partners = User::all();
-                if (!is_numeric($_POST['partner']) || !array_key_exists($_POST['partner'], $partners)) {
-                    Session::pushError('partner', 'Must use a status from the selection.');
+                
+                // d($_POST['partner']);
+                // d($partners);
+                
+                // see if partner exists in results.
+                
+                /**
+                 * @return mixed
+                 */
+                function partner_exists() {
+                    $partners = User::all();
+                    foreach ($partners as $partner) {
+                        if ($partner->id() == $_POST['partner']) {
+                            return true;
+                        }
+                    }
+                    return false;
+
+                }
+                
+                if (!is_numeric($_POST['partner']) || !partner_exists()) {
+                    Session::pushError('partner', 'Must use a partner from the selection.');
                 }
 
                 if (!is_numeric($_POST['total_amount'])) {
@@ -164,6 +183,10 @@ class InvoiceController
                 Session::clearErrors();
                 Session::clearFormData();
                 Session::pushSuccess('invoice_created', 'Invoice has been saved/sent.');
+
+                // TODO !!! Create the invoice in the database.
+
+                Invoice::store($_POST);
                 header("Location: /invoices");
                 exit;
 

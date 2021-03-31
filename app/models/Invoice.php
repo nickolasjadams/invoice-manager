@@ -16,6 +16,31 @@ class Invoice extends Model
 
     // user specific details
     public $company_name, $name, $email, $phone, $address, $suite, $city, $state, $zip;
+
+
+
+
+    public static function store($post) {
+        // dd($post);
+        $db = DB::make();
+        $statement = $db->prepare(
+            'INSERT INTO invoices ' .
+            '       (user_id, status, due_at, subtotal_amount, total_amount, summary, admin_note)' .
+            "VALUES ((:user_id), (:status), (:due_at), (:subtotal_amount), (:total_amount), (:summary), (:admin_note));"
+        );
+        $statement->bindParam(":user_id", $post['partner']);
+        $statement->bindParam(":status", $post['status']);
+        $statement->bindParam(":due_at", $post['due_at']);
+        $statement->bindParam(":subtotal_amount", $post['total_amount']); // no default value. Make it the same as the total.
+        $statement->bindParam(":total_amount", $post['total_amount']);
+        $statement->bindParam(":summary", $post['summary']);
+        $statement->bindParam(":admin_note", $post['admin_note']);
+        $statement->execute();
+
+        // $error = $statement->errorInfo();
+        // dd($error);
+        $db = null;
+    }
     
     public function create($due_at, $subtotal_amount, $total_amount) {
         $this->due_at = $due_at;
@@ -74,4 +99,3 @@ class Invoice extends Model
     }
 
 }
-
