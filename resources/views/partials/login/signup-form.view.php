@@ -28,13 +28,15 @@
                         <input type="password" name="password" required placeholder="Password" title="Password" />
                     </div>
                     <div class="pw-criteria"></div>
+
+                    <?php // <i class='far fa-check-circle mr5 success'></i> ?>
                     <div class="pw-hint" data-toggle="tooltip" data-html="true" title="
 
-                    <div><i class='far fa-check-circle mr5 success'></i>at least 8 characters in length.</div>
-                    <div><i class='far fa-times-circle mr5 danger'></i>at least 1 lowercase letter.</div>
-                    <div><i class='far fa-times-circle mr5 danger'></i>has at least 1 uppercase letter.</div>
-                    <div><i class='far fa-times-circle mr5 danger'></i>has at least 1 number.</div>
-                    <div><i class='far fa-times-circle mr5 danger'></i>has at least 1 special character.</div>
+                    <div>at least 8 characters in length.</div>
+                    <div></i>at least 1 lowercase letter.</div>
+                    <div></i>has at least 1 uppercase letter.</div>
+                    <div></i>has at least 1 number.</div>
+                    <div></i>has at least 1 special character.</div>
 
 
                     "><span class="far fa-question-circle"></span></div>

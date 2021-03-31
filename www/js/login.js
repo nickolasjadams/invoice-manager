@@ -53,7 +53,7 @@ if (isLoginPage) {
 
 	var submitButton = document.querySelector(".signup-form-wrapper button[type='submit']");
 
-	var signupInputs = [ 'first_name', 'last_name', 'email', 'company_name' ];
+	var signupInputs = [ 'first_name', 'last_name', 'email', 'company_name', 'password' ];
 
 	signupInputs.forEach(function(inputName) {
 		document.querySelector(".signup-form-wrapper [name='" + inputName + "']").addEventListener("keyup", function() {
