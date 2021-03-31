@@ -65,7 +65,7 @@ include 'partials/dashboard/beginlayout.view.php';
 		</div>
 
 		<div class="form-element <?= invalid_form_element('phone'); ?>">
-			<label for="phone">Phone <span> <?= validate_form('phone'); ?></span></label>
+			<label for="phone">Phone <span>* <?= validate_form('phone'); ?></span></label>
 			<input type="text" name="phone" id="phone" value="<?= persisted_or_stored('phone', $user->phone); ?>" required>
 		</div>
 

@@ -108,7 +108,7 @@ class MyAccountController
             
 
             // Validate
-            $email_regex = '/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$/m';
+            $email_regex = '/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,10}$/m';
             if (!preg_match($email_regex, $email)) {
                 Session::pushError('email', 'Not a valid email format.');
             }

@@ -87,7 +87,7 @@ class InvoiceController
 
         // This should be optimized to select only the id and company name.
         // I'm running on a tight deadline, so I'll come back to that later.
-        $partners = User::all();
+        $partners = User::where('admin', '<>', '1');
 
         if (Session::user()->isAdmin()) {
             View::render('create', [
@@ -183,8 +183,6 @@ class InvoiceController
                 Session::clearErrors();
                 Session::clearFormData();
                 Session::pushSuccess('invoice_created', 'Invoice has been saved/sent.');
-
-                // TODO !!! Create the invoice in the database.
 
                 Invoice::store($_POST);
                 header("Location: /invoices");
