@@ -21,7 +21,6 @@ class Router
      * @return Router
      */
     public static function load($file) {
-        d('Router load called');
         $router = new static;
         require $file;
         return $router;
@@ -36,7 +35,6 @@ class Router
      * @return mixed Path to controller or controller/method associated with uri
      */
     public function direct($uri, $requestType) {
-        d('Router directing to controller');
 
         if (array_key_exists($uri, $this->routes[$requestType])) {
             // check if specific method was stored.
