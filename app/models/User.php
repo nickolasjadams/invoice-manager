@@ -29,12 +29,15 @@ class User extends Model
      * @param  string $password plaintext
      * @return User
      */
-    public function create($first_name, $last_name, $email, $company_name, $password) {
+    public function create($first_name, $last_name, $email, $company_name, $hash_password) {
         $this->first_name = $first_name;
         $this->last_name = $last_name;
         $this->email = $email;
         $this->company_name = $company_name;
-        $hash_password = password_hash($password, PASSWORD_DEFAULT);
+        // $hash_password = password_hash($password, PASSWORD_DEFAULT);
+        // d($password);
+        // d($hash_password);
+        // dd(password_verify($password, $hash_password));
         $this->password = $hash_password;
         return $this;
     }

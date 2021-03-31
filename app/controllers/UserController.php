@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Helpers\Facades\Log;
 use App\Helpers\Session;
 use App\Models\User;
 use Exception;
@@ -56,6 +57,9 @@ class UserController
         $password = $_POST['password'];
         $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
+
+        // dd(password_verify($password, $hash_password));
+
         // TODO validate stuff. 
         // if it's not good we'll need to go back
         // We'll need to report the errors
@@ -70,9 +74,11 @@ class UserController
         try {
             $user = new User;
             $user->create($first_name, $last_name, $email, $company_name, $hash_password);
+            // dd($user);
             $user->save();
         } catch (Exception $e) {
             // TODO head back if there was an issue
+            dd("what happened" . $e);
         }
 
         $_SESSION['user'] = $user;
