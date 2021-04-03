@@ -2037,6 +2037,17 @@ table:not(.invoice-info) .foot {
 .input-field input, .input-field select, .input-field textarea {
   width: 100%;
 }
+.input-field.invalid .error {
+  display: block;
+  color: #dc3545;
+}
+.input-field.invalid input, .input-field.invalid select, .input-field.invalid textarea {
+  border-color: #dc3545;
+}
+
+[class^=flexcol].invalid {
+  flex-flow: column;
+}
 
 .form-element label {
   display: block;

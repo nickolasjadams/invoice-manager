@@ -135,6 +135,22 @@
 	input, select, textarea {
 		width: 100%;
 	}
+
+	&.invalid {
+		.error {
+			display: block;
+			color: $danger;
+		}
+		input, select, textarea {
+			border-color: $danger;
+		}
+	}
+}
+
+[class^='flexcol'] {
+	&.invalid {
+		flex-flow: column;
+	}
 }
 
 .form-element {

@@ -14,6 +14,9 @@ class UserController
         session_start();
     }
 
+    /**
+     * User Login authentication process.
+     */
     public function index() {
 
         Session::clearErrors();
@@ -48,43 +51,63 @@ class UserController
 
     }
 
+    /**
+     * User signup processing.
+     */
     public function store() {
 
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
-        $email = $_POST['email'];
-        $company_name = $_POST['company_name'];
-        $password = $_POST['password'];
-        $hash_password = password_hash($password, PASSWORD_DEFAULT);
+        Session::clearErrors();
+        Session::clearFormData();
+        Session::snapshotFormData();
 
+        $required_fields = (
+            !empty($_POST['first_name']) &&
+            !empty($_POST['last_name']) &&
+            !empty($_POST['email']) &&
+            !empty($_POST['company_name']) &&
+            !empty($_POST['password'])
+        );
 
-        // dd(password_verify($password, $hash_password));
+        if ($required_fields) {
 
-        // TODO validate stuff. 
-        // if it's not good we'll need to go back
-        // We'll need to report the errors
-        // and write a url query to use with js
-        // the js will open the bootstrap modal
-        // and show which inputs have issues.
+            $first_name = $_POST['first_name'];
+            $last_name = $_POST['last_name'];
+            $email = $_POST['email'];
+            $company_name = $_POST['company_name'];
+            $password = $_POST['password'];
+            $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // TODO ensure user doesn't already exist
+            if (User::exists($email)) {
+                Session::pushError('email', 'Account already exists for this email.');
+            }
 
-        // header();
+            if (Session::getErrors() > 0) {
+                header("Location: /login?signup=failed");
+                exit;
+            }
 
-        try {
-            $user = new User;
-            $user->create($first_name, $last_name, $email, $company_name, $hash_password);
-            // dd($user);
-            $user->save();
-        } catch (Exception $e) {
-            // TODO head back if there was an issue
-            dd("what happened" . $e);
+            try {
+                $user = new User;
+                $user->create($first_name, $last_name, $email, $company_name, $hash_password);
+                $user->save();
+            } catch (Exception $e) {
+                // TODO head back if there was an issue
+                Session::pushError('signup_errors', 'Something unexpected happened. Please try again later.');
+                Log::debug("Exception when trying to create and save new user to a database. " . $e);
+                header("Location: /signup?login=failed");
+                exit;
+            }
+
+            $_SESSION['user'] = $user;
+
+            header("Location: /dashboard");
+            exit;
+
+        } else {
+            Session::pushError('signup_errors', 'Please fill in all required fields.');
+            header("Location: /login?login=failed");
+            exit;
         }
-
-        $_SESSION['user'] = $user;
-
-        header("Location: /dashboard");
-
 
     }
 }

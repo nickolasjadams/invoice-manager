@@ -3,12 +3,16 @@
  * @author Nick Adams
  *
  */
- 
-var isLoginPage = $("body").hasClass("login");
 
-var feedbackPercentage = 0;
+$(function() {
 
-if (isLoginPage) {
+	// Pop modal on failed signups.
+	var failed = window.location.search;
+	if (failed.includes('signup=failed')) {
+		$("#signupModal").modal('show');
+	}
+
+	var feedbackPercentage = 0;
 	var signupPassword = document.querySelector(".signup-form-wrapper input[name='password']");
 	signupPassword.addEventListener("keyup", function() {
 
@@ -88,8 +92,6 @@ if (isLoginPage) {
 			}
 			
 		}
-		
 
 	}
-
-}
+});

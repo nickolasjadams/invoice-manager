@@ -38,10 +38,6 @@ if (isset($_SESSION['user'])) {
 
 			<?php
 
-				if (isset($errors['login_mismatch'])) {
-					bs4_alert("danger", $errors['login_mismatch']);
-				}
-
 				include 'partials/login/login-form.view.php';
 				echo '<hr>';
 				echo '<button type="button" class="fw tac btn btn-primary"  data-toggle="modal" data-target="#signupModal">Create an Account</a>';

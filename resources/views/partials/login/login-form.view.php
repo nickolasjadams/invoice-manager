@@ -1,3 +1,11 @@
+<?php
+
+if (isset($errors['login_mismatch'])) {
+    bs4_alert("danger", $errors['login_mismatch']);
+}
+
+?>
+
 <form action="/login" method="POST">
     <input type="email" name="email" required placeholder="Email" title="Email"/>
     <input type="password" name="password" required placeholder="Password" title="Password" />

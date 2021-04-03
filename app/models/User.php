@@ -34,10 +34,6 @@ class User extends Model
         $this->last_name = $last_name;
         $this->email = $email;
         $this->company_name = $company_name;
-        // $hash_password = password_hash($password, PASSWORD_DEFAULT);
-        // d($password);
-        // d($hash_password);
-        // dd(password_verify($password, $hash_password));
         $this->password = $hash_password;
         return $this;
     }
@@ -222,7 +218,16 @@ class User extends Model
         } catch (Exception $e) {
             Log::debug("accountIncomplete called on NULL user.");
         }
-        
+    }
 
+    public static function exists($email) {
+        $db = DB::make();
+        $statement = $db->prepare("SELECT email FROM users WHERE email = (:email)");
+        $statement->bindParam(':email', $email);
+        $statement->execute();
+        $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+        d($users);
+        $db = null;
+        return (sizeof($users) > 0) ? true : false;
     }
 }
