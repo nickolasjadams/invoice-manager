@@ -98,6 +98,8 @@ class UserController
                 exit;
             }
 
+            Session::clearFormData();
+            Session::clearErrors();
             $_SESSION['user'] = $user;
 
             header("Location: /dashboard");
