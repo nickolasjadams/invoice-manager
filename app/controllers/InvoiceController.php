@@ -10,6 +10,7 @@ use ReflectionClass;
 use App\Helpers\Facades\Log;
 use App\Models\Invoice;
 use App\Helpers\DateTimeX as DateTime;
+use Exception;
 
 class InvoiceController
 {
@@ -36,15 +37,77 @@ class InvoiceController
     }
 
     public function show() {
-        $invoice = $this->validateInvoice();
-        $invoice->due_at = DateTime::displayFormat($invoice->due_at);
+        $_GET = array_map("sanitize", $_GET);
+        if (isset($_GET['id'])) {
+            $invoice = Invoice::where('id', '=', $_GET['id'])[0];
 
+            // dd($invoice);
+            
+            $invoice = $this->validateInvoice();
+            $invoice->due_at = DateTime::displayFormat($invoice->due_at);
+    
+            View::render('invoice', [
+                'user' => Session::user(),
+                'invoice' => $invoice
+            ]);
+        }
 
-        View::render('invoice', [
-            'user' => Session::user(),
-            'invoice' => $invoice
+    }
+
+    public static function preparePaymentIntents() {
+        $stripe = new \Stripe\StripeClient([
+            'api_key' => getenv('STRIPE_SECRET_KEY'),
+            'stripe_version' => getenv('STRIPE_API_VERSION'),
         ]);
 
+        // get amount from the url
+        $_GET = array_map("sanitize", $_GET);
+        if (isset($_GET['id'])) {
+            $invoice = Invoice::where('id', '=', $_GET['id'])[0];
+            $amount_to_pay = $invoice->total_amount;
+            $amount_to_pay = str_replace('.', '', $amount_to_pay);
+        }
+
+        try {
+            $paymentIntent = $stripe->paymentIntents->create([
+              'payment_method_types' => ['card'],
+              'amount' => $amount_to_pay,
+              'currency' => 'usd',
+            ]);
+          } catch (\Stripe\Exception\ApiErrorException $e) {
+            Log::error($e->getError()->message);
+            http_response_code(400);
+          ?>
+            <h1>Error</h1>
+            <p>Failed to create a PaymentIntent</p>
+            <p>Please check the server logs for more information</p>
+          <?php
+            exit;
+          } catch (Exception $e) {
+            Log::error($e);
+            http_response_code(500);
+            exit;
+          }
+
+          // payment made successfully.
+          // update the db.
+
+        //   $invoice->applyPayment();
+
+          return $paymentIntent;
+    }
+
+    public function makePayment() {
+        $stripe = new \Stripe\StripeClient([
+            'api_key' => getenv('STRIPE_SECRET_KEY'),
+            'stripe_version' => getenv('STRIPE_API_VERSION'),
+        ]);
+        
+
+        // Post data 
+
+        
+          
     }
 
     /**
@@ -68,7 +131,7 @@ class InvoiceController
                 if (isset(Invoice::where('id', '=', $invoice_id)[0])) {
 
                     $invoice = Invoice::where('id', '=', $invoice_id)[0];
-                    $invoice = $invoice->joinUserInfo(1);
+                    $invoice = $invoice->joinUserInfo($invoice->user_id);
 
                     if (Session::user()->isAdmin() || Session::user()->id() === $invoice->user_id) {
                         return $invoice;

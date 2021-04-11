@@ -28,6 +28,8 @@ $router->get('invoices', 'app/controllers/InvoiceController.php', 'index');
 
 $router->get('invoice', 'app/controllers/InvoiceController.php', 'show');
 
+$router->get('payment', 'app/controllers/InvoiceController.php', 'makePayment');
+
 $router->get('my-account', 'app/controllers/MyAccountController.php', 'index');
 $router->post('my-account-password', 'app/controllers/MyAccountController.php', 'updatePassword');
 $router->post('my-account-info', 'app/controllers/MyAccountController.php', 'updateInfo');

@@ -11,6 +11,20 @@ class APIController
 {
 
     /**
+     * Private session call. Called via ajax on the invoice route.
+     */
+    public function makePayment() {
+        \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
+
+        \Stripe\PaymentIntent::create([
+            'amount' => 1000,
+            'currency' => 'usd',
+            'payment_method_types' => ['card'],
+            'receipt_email' => 'jenny.rosen@example.com',
+        ]);
+    }
+
+    /**
      * Private session call. Returns non-admin users.
      * 
      * @return json

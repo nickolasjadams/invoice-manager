@@ -22,6 +22,10 @@ class Path
         Log::debug('Root not found from ' . $initial_location . ' with a max depth of ' . $max_depth);
     }
 
+    public static function views() {
+        return self::root() . "/resources/views/";
+    }
+
     public static function toNameSpace($php_class_path) {
         // remove file extension
         $php_class_path = explode('.php', $php_class_path)[0];

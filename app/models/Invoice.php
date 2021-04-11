@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Helpers\Session;
+use App\Helpers\Facades\Log;
 use App\Models\Model;
 use Database\Connection as DB;
 use PDO;
@@ -96,6 +98,37 @@ class Invoice extends Model
         $this->zip = $user['zip'];
         $db = null; // close connection
         return $this;
+    }
+
+    /**
+     * Updates company info on the object and saves to database.
+     *
+     * @param  mixed $form_data_array Assosiative array can be retrieved by post or session. email, first_name, last_name, company_name, phone, address, suite, city, state, zip
+     * @return bool Returns true if successful
+     */
+    public function applyPayment() {
+
+        $this->subtotal_amount = 0;
+        $this->total_amount = 0;
+        $id = $this->id();
+
+        $db = DB::make();
+        $statement = $db->prepare(
+            'UPDATE invoices ' .
+            '   SET subtotal_amount = (:subtotal_amount), total_amount = (:total_amount)' .
+            '   WHERE id = (:id)'
+        );
+        $statement->bindParam(":subtotal_amount", $this->subtotal_amount);
+        $statement->bindParam(":total_amount", $this->total_amount);
+        $statement->bindParam(":id", $this->id);
+        $success = $statement->execute();
+        $db = null;
+        if (!$success) {
+            Session::pushError('db_update', 'Error applying successful payment to your account. Please contact Nick Adams.');
+            Log::error("Invoice {$this->id()} Successful payment made. Failed to apply to database.");
+            return false;
+        }
+        return true;
     }
 
 }

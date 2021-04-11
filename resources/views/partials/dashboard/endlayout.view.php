@@ -18,7 +18,10 @@ use App\Helpers\Session;
             echo "<script src=\"{$script}\"></script>";
 		}
 	}
-	?>
+	if (isset($include_inline_js)) {
+		include $include_inline_js;
+	}
+?>
 </body>
 </html>
 

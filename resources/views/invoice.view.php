@@ -1,9 +1,17 @@
 <?php
+
+use App\Helpers\Path;
+use App\Controllers\InvoiceController;
+
 $title = 'Invoice';
-$css = [];
-$js = [];
+$css = ['css/base.css'];
+$js = ['https://js.stripe.com/v3/', 'js/stripe-utils.js'];
+$include_inline_js = Path::views() . "/invoice_js.php";
 $back = "/invoices";
 include 'partials/dashboard/beginlayout.view.php';
+
+
+$paymentIntent = InvoiceController::preparePaymentIntents();
 ?>
 
 <section class="invoice-wrapper">
@@ -82,11 +90,26 @@ include 'partials/dashboard/beginlayout.view.php';
 
 <section class="stripe-wrapper">
     
-    <p>Pay</p>
-
     <button id="stripe-more">
         <i class="fas fa-chevron-up"></i>
     </button>
+    
+    <p>Pay</p>
+
+    <form id="payment-form">
+        <label for="card-element">Card</label>
+        <div id="card-element">
+          <!-- Elements will create input elements here -->
+        </div>
+
+        <!-- We'll put the error messages in this element -->
+        <div id="card-errors" role="alert"></div>
+
+        <button class="btn btn-primary" id="submit">Pay</button>
+      </form>
+
+      <div id="messages" role="alert" style="display: none;"></div>
+
 
 
 </section>
