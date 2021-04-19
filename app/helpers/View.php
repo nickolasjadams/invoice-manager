@@ -27,6 +27,7 @@ class View
             }
         } catch (Exception $e) {
             Log::debug($e->getMessage());
+            var_dump($e->getTraceAsString());
             // header('Location: /', 404);
             die('404 - Error: View not found');
         }
