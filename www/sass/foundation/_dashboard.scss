@@ -454,3 +454,31 @@ textarea {
 .dashed-top {
     border-top: 2px dashed lightgrey;
 }
+
+.invoices {
+
+	tr td:last-child {
+		text-align: left;
+	}
+
+	&.admin {
+
+		tr td:nth-child(3) { // company_name
+			text-align: left;
+		}
+
+		tr td:nth-child(5) { // amount
+			text-align: right;
+		}
+
+		
+		
+	}
+
+	&:not(.admin) {
+		tr td:nth-child(4) { // amount
+			text-align: right;
+		}
+	}
+	
+}

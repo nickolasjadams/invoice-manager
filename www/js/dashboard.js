@@ -51,6 +51,7 @@ if ($("#stripe-more").length) {
 /**
  * Removes Stripe payment navbar.
  * Sets invoice totals to zero after payment.
+ * Changes the invoice status.
  * Shows an alert of successful payment.
  */
 function successfulPayment() {
@@ -68,6 +69,15 @@ function successfulPayment() {
 			
 			setTimeout(function() {
 				$("#invoice-amount").html("0.00");
+				var classes = document.querySelector(".status-btn").classList;
+				for (var i = 0; i < classes.length; i++) {
+					if (classes[i].includes('bg-')) {
+						classes.remove(classes[i]);
+						break;
+					}
+				}
+				$(".status-btn").addClass('bg-success');
+				$(".status-btn").html('Paid');
 				$("#ui-messages").css("height", "0vh");
 			}, 2000);
 		}, 200);

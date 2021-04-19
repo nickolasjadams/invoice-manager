@@ -526,6 +526,19 @@ textarea {
   border-top: 2px dashed lightgrey;
 }
 
+.invoices tr td:last-child {
+  text-align: left;
+}
+.invoices.admin tr td:nth-child(3) {
+  text-align: left;
+}
+.invoices.admin tr td:nth-child(5) {
+  text-align: right;
+}
+.invoices:not(.admin) tr td:nth-child(4) {
+  text-align: right;
+}
+
 /*!
  * TableCloth v1.0.0
  * Copyright (c) 2018 Nick Adams

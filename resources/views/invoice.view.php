@@ -33,7 +33,9 @@ if ($invoice->total_amount > 0) {
                     123 NotMyRealAddress St.<br>
                     Boise ID, 83706
                 </address>
-                <div class="status"><?= $invoice->status; ?></div>
+                <div class="status">
+                    <?= status_tag($invoice->transformStatus()); ?>
+                </div>
             </div>
             <div class="right">
                 <div><strong>To: </strong></div>

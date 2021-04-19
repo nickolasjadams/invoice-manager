@@ -131,4 +131,30 @@ class Invoice extends Model
         return true;
     }
 
+    public function transformStatus() {
+        if ($this->status == 'sent') {
+
+            if ($this->total_amount == 0) {
+                return 'Paid';
+            }
+
+            $now = strtotime('now');
+            $due_date = strtotime($this->due_at);
+
+            
+            if ($now < $due_date) {
+                return 'Due';
+            } else {
+                return 'Overdue';
+            }
+
+        } elseif ($this->status == 'draft') {
+            return 'Draft';
+        } elseif ($this->status == 'unpaid') {
+            return 'Unpaid';
+        } elseif ($this->status == 'cancelled') {
+            return 'Cancelled';
+        }
+    }
+
 }

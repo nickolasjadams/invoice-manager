@@ -1,4 +1,7 @@
 <?php
+
+use App\Helpers\Session;
+
 $title = 'View Invoices';
 $css = [];
 $js = [];
@@ -10,7 +13,7 @@ if (isset($successes['invoice_created'])) {
 }
 ?>
 
-<table>
+<table class="invoices <?= (Session::user()->isAdmin()) ? 'admin' : ''; ?>">
     <tr>
         <th>Status</th>
         <th>ID</th>
@@ -26,7 +29,7 @@ if (isset($successes['invoice_created'])) {
 
     <?php foreach ($invoices as $invoice): ?>
         <tr>
-            <td><?= ucfirst($invoice->status); ?></td>
+            <td><?php status_tag($invoice->transformStatus()); ?></td>
             <td><a href="invoice?id=<?= $invoice->id(); ?>"><?= $invoice->id(); ?></a></td>
             <?= $admin ? "<td>{$invoice->companyName($invoice->user_id)}</td>" : ''; ?>
             <td><?= $invoice->due_at; ?></td>

@@ -17,7 +17,13 @@ include 'partials/dashboard/beginlayout.view.php';
 
 	<h1>Dashboard</h1>
 
-	<p>Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Reprehenderit, vero! Provident debitis exercitationem ipsum, dolorum vero ad ipsam nostrum? Odio officia, adipisci perspiciatis eaque vel explicabo illum nihil libero veritatis.</p>
+	<?php
+		if (Session::user()->isAdmin()) {
+			echo "Overdue: " . sizeof($overdue);
+		} else {
+			echo "Upcoming: " . sizeof($upcoming);
+		}
+	?>
 	
 
 <?php

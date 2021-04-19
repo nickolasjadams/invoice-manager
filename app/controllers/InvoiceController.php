@@ -23,11 +23,12 @@ class InvoiceController
     public function index() {
         if (Session::user()->isAdmin()) {
             $invoices = Invoice::all("due_at", "DESC");
-            foreach($invoices as $invoice) {
-                $invoice->due_at = DateTime::displayFormat($invoice->due_at);
-            }
         } else {
             $invoices = Invoice::where('user_id', '=', Session::user()->id());
+        }
+
+        foreach($invoices as $invoice) {
+            $invoice->due_at = DateTime::displayFormat($invoice->due_at);
         }
         
         

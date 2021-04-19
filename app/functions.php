@@ -127,3 +127,30 @@ function mock_post($arr) {
         $_POST[$key] = $value;
     }
 }
+
+/**
+ * Templating function to eacho out a status tag for the invoices list.
+ */
+function status_tag($status_text) {
+
+    switch ($status_text) {
+        case 'Paid':
+            echo "<span class='status-btn bg-success'>{$status_text}</span>";
+            break;
+        case 'Due':
+            echo "<span class='status-btn bg-warning'>{$status_text}</span>";
+            break;
+        case 'Overdue':
+            echo "<span class='status-btn bg-danger'>{$status_text}</span>";
+            break;
+        case 'Draft':
+            echo "<span class='status-btn bg-primary'>{$status_text}</span>";
+            break;
+        case 'Unpaid':
+            echo "<span class='status-btn bg-primary'>{$status_text}</span>";
+            break;
+        case 'Cancelled':
+            echo "<span class='status-btn bg-primary'>{$status_text}</span>";
+            break;
+    }
+}
