@@ -1,6 +1,4 @@
-<?php
-// I'm not sure this is being recognized as php by heroku.
-?>
+
 <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -20,24 +18,24 @@
                     }
 
                     ?>
-                    <div class="flexcol50 input-field <?php invalid_form_element('first_name'); ?>">
-                        <div class="error"><?php validate_form('first_name'); ?></div>
-                        <input type="text" name="first_name" required placeholder="First Name" title="First Name" value="<?php persisted('first_name') ?>" />
+                    <div class="flexcol50 input-field <?= invalid_form_element('first_name'); ?>">
+                        <div class="error"><?= validate_form('first_name'); ?></div>
+                        <input type="text" name="first_name" required placeholder="First Name" title="First Name" value="<?= persisted('first_name') ?>" />
                     </div>
-                    <div class="flexcol50 input-field <?php invalid_form_element('last_name'); ?>">
-                        <div class="error"><?php validate_form('last_name'); ?></div>
-                        <input type="text" name="last_name" required placeholder="Last Name" title="Last Name" value="<?php persisted('last_name'); ?>" />
+                    <div class="flexcol50 input-field <?= invalid_form_element('last_name'); ?>">
+                        <div class="error"><?= validate_form('last_name'); ?></div>
+                        <input type="text" name="last_name" required placeholder="Last Name" title="Last Name" value="<?= persisted('last_name'); ?>" />
                     </div>
-                    <div class="flexcol100 input-field <?php invalid_form_element('email'); ?>">
-                        <div class="error"><?php validate_form('email'); ?></div>
-                        <input type="email" name="email" required placeholder="Email" title="Email" value="<?php persisted('email'); ?>" />
+                    <div class="flexcol100 input-field <?= invalid_form_element('email'); ?>">
+                        <div class="error"><?= validate_form('email'); ?></div>
+                        <input type="email" name="email" required placeholder="Email" title="Email" value="<?= persisted('email'); ?>" />
                     </div>
-                    <div class="flexcol100 input-field <?php invalid_form_element('company_name'); ?>">
-                        <div class="error"><?php validate_form('company_name'); ?></div>
-                        <input type="text" name="company_name" required placeholder="Company Name" title="Company Name" value="<?php persisted('company_name'); ?>" />
+                    <div class="flexcol100 input-field <?= invalid_form_element('company_name'); ?>">
+                        <div class="error"><?= validate_form('company_name'); ?></div>
+                        <input type="text" name="company_name" required placeholder="Company Name" title="Company Name" value="<?= persisted('company_name'); ?>" />
                     </div>
-                    <div class="flexcol100 input-field <?php invalid_form_element('password'); ?>">
-                        <div class="error"><?php validate_form('password'); ?></div>
+                    <div class="flexcol100 input-field <?= invalid_form_element('password'); ?>">
+                        <div class="error"><?= validate_form('password'); ?></div>
                         <input type="password" name="password" required placeholder="Password" title="Password" />
                     </div>
                     <div class="pw-criteria"></div>

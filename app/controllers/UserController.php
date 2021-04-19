@@ -81,10 +81,18 @@ class UserController
                 Session::pushError('email', 'Account already exists for this email.');
             }
 
-            if (Session::getErrors() > 0) {
-                header("Location: /login?signup=failed");
-                exit;
+            if (Session::getErrors() != null) {
+                if (sizeof(Session::getErrors() > 0)) {
+                    d('bad');
+                    header("Location: /login?signup=failed");
+                    exit;
+                }
             }
+            d('good');
+
+            
+
+            
 
             try {
                 $user = new User;
