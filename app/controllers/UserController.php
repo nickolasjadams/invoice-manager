@@ -107,7 +107,7 @@ class UserController
 
         } else {
             Session::pushError('signup_errors', 'Please fill in all required fields.');
-            header("Location: /login?login=failed");
+            header("Location: /login?signup=failed");
             exit;
         }
 
