@@ -64,8 +64,10 @@ function validate_form($key) {
  */
 function invalid_form_element($key) {
     $errors = Session::getErrors();
-    if (array_key_exists($key, $errors)) {
-        echo 'invalid';
+    if ($errors != null) {
+        if (array_key_exists($key, $errors)) {
+            echo 'invalid';
+        }
     }
 }
 
