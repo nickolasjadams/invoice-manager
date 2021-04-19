@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Helpers\Session;
+use App\Models\Invoice;
 use App\Models\User;
 use Database\Connection as DB;
 use PDO;
@@ -12,16 +13,51 @@ class APIController
 
     /**
      * Private session call. Called via ajax on the invoice route.
+     * Checks the paymentIntent.status is succeeded with a post of the paymentIntent.id
+     * Update the database if the payment was successful.  
      */
-    public function makePayment() {
-        \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
+    public function updatePayment() {
 
-        \Stripe\PaymentIntent::create([
-            'amount' => 1000,
-            'currency' => 'usd',
-            'payment_method_types' => ['card'],
-            'receipt_email' => 'jenny.rosen@example.com',
-        ]);
+        Session::check();
+        header('Content-Type: application/json');
+
+        if (isset($_GET['pid']) && isset($_GET['id'])) {
+
+            $stripe = new \Stripe\StripeClient([
+                'api_key' => getenv('STRIPE_SECRET_KEY'),
+                'stripe_version' => getenv('STRIPE_API_VERSION'),
+            ]);
+
+            $pi = $stripe->paymentIntents->retrieve(
+                $_GET['pid'],
+                []
+            );
+
+            // ensure the payment has succeeded
+            if ($pi->status == 'succeeded') {
+
+                // make sure the pid amount matches the invoice id amount
+                $invoices = Invoice::where('id', '=', $_GET['id']);
+                if (sizeof($invoices) > 0) {
+                    $invoice = $invoices[0];
+                    $invoice_amount = str_replace('.', '', $invoice->total_amount);
+
+                    if ($pi->amount == $invoice_amount) {
+
+                        // update the database
+                        $db_success = $invoice->applyPayment();
+                        if ($db_success) {
+                            echo json_encode(true);
+                            exit();
+                        }
+                    }
+                }                
+                
+            }
+            echo json_encode(false);
+            exit();
+
+        }
     }
 
     /**

@@ -87,7 +87,7 @@ include 'partials/dashboard/beginlayout.view.php';
         <textarea name="admin_note" id="admin_note"><?= persisted('admin_note'); ?></textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary">Save as Draft</button>
+    <button type="submit" class="btn btn-primary">Send Invoice</button>
 
 </form>
 

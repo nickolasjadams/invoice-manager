@@ -1,3 +1,4 @@
+<?php if ($paymentIntent) : ?>
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
     const stripe = Stripe("<?= getenv('STRIPE_PUBLISHABLE_KEY'); ?>", {
@@ -30,7 +31,30 @@ document.addEventListener('DOMContentLoaded', async () => {
             paymentForm.querySelector('button').disabled = false;
             return;
         }
-        addMessage(`Payment (${paymentIntent.id}): ${paymentIntent.status}`);
+        // addMessage(`Payment (${paymentIntent.id}): ${paymentIntent.status}`); // for debugging
+
+        let id = window.location.search.split('id=')[1];
+        var dataObj = { 'pid': paymentIntent.id, 'id': id }
+
+        $.ajax({
+            url: '/api/invoice/update',
+            type: 'get',
+            data: dataObj,
+            error: function(err) {
+                console.log("Error: " + error);
+            },
+            success: function(data) { 
+                console.log("Success: " + data);
+            }
+
+        });
+
+        successfulPayment();
+        console.log(`${paymentIntent.id} ${paymentIntent.status}`);
+
+
+        
     });
 });
 </script>
+<?php endif ; ?>

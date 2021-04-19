@@ -11,6 +11,8 @@ use App\Helpers\Facades\Log;
 use App\Models\Invoice;
 use App\Helpers\DateTimeX as DateTime;
 use Exception;
+use Database\Connection as DB;
+use PDO;
 
 class InvoiceController
 {
@@ -148,9 +150,16 @@ class InvoiceController
      */
     public function create() {
 
-        // This should be optimized to select only the id and company name.
-        // I'm running on a tight deadline, so I'll come back to that later.
-        $partners = User::where('admin', '<>', '1');
+        $db = DB::make();
+        $sql  = "SELECT id, company_name FROM users" .
+                " WHERE admin <> 1" .
+                " AND verified = 1" .
+                " AND active = 1";
+        $statement = $db->prepare($sql);
+        $statement->execute();
+        $partners = $statement->fetchAll(PDO::FETCH_CLASS, 'App\Models\User');
+        $db = null; // close connection
+        
 
         if (Session::user()->isAdmin()) {
             View::render('create', [

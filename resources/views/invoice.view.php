@@ -2,6 +2,7 @@
 
 use App\Helpers\Path;
 use App\Controllers\InvoiceController;
+use App\Helpers\Session;
 
 $title = 'Invoice';
 $css = ['css/base.css'];
@@ -10,8 +11,9 @@ $include_inline_js = Path::views() . "/invoice_js.php";
 $back = "/invoices";
 include 'partials/dashboard/beginlayout.view.php';
 
-
-$paymentIntent = InvoiceController::preparePaymentIntents();
+if ($invoice->total_amount > 0) {
+    $paymentIntent = InvoiceController::preparePaymentIntents();
+}
 ?>
 
 <section class="invoice-wrapper">
@@ -60,7 +62,7 @@ $paymentIntent = InvoiceController::preparePaymentIntents();
                     </tr>
                     <tr>
                         <td>Amount:</td>
-                        <td>$<?= $invoice->total_amount ?></td>
+                        <td>$<span id="invoice-amount"><?= $invoice->total_amount ?></span></td>
                     </tr>
                     <tr>
                         <td>Due:</td>
@@ -77,6 +79,28 @@ $paymentIntent = InvoiceController::preparePaymentIntents();
                 <div>Summary: </div>
                 <?= $invoice->summary; ?>
             </div>
+
+            
+            <?php if (Session::user()->isAdmin()) : ?>
+                <?php 
+                if ($invoice->admin_note || $invoice->client_note) {
+                    echo "<div class='summary mt20'>";
+                    echo ($invoice->admin_note) ? "<div><strong>Admin Notes: </strong></div>{$invoice->admin_note}": '';
+                    echo ($invoice->client_note) ? "<div class='dashed-top mt10 pt10'><strong>Client Notes: </strong></div>{$invoice->client_note}": '';
+                    echo "</div>";
+                }
+                ?>
+                
+            <?php else : ?>
+                <?php
+                    if ($invoice->client_note) {
+                        echo "<div class='summary mt20'>";
+                        echo ($invoice->client_note) ? "<div><strong>Client Notes: </strong></div>{$invoice->client_note}": '';
+                        echo "</div>";
+                    }
+                ?>
+            <?php endif ; ?>
+
         </div>
 
 
@@ -87,14 +111,14 @@ $paymentIntent = InvoiceController::preparePaymentIntents();
 
 </section>
 
-
+<?php if ($invoice->total_amount > 0): ?>
 <section class="stripe-wrapper">
     
-    <button id="stripe-more">
+    <button id="stripe-more" class="btn btn-primary">
         <i class="fas fa-chevron-up"></i>
+        <span>Pay</span>
     </button>
     
-    <p>Pay</p>
 
     <form id="payment-form">
         <label for="card-element">Card</label>
@@ -105,14 +129,17 @@ $paymentIntent = InvoiceController::preparePaymentIntents();
         <!-- We'll put the error messages in this element -->
         <div id="card-errors" role="alert"></div>
 
-        <button class="btn btn-primary" id="submit">Pay</button>
+        <button class="btn btn-primary" id="submit">Send Payment <i class="fas fa-paper-plane"></i></button>
       </form>
 
-      <div id="messages" role="alert" style="display: none;"></div>
+      <div id="messages" role="alert"></div>
 
-
-
+      
+      
+      
 </section>
+<div id="ui-messages" role="alert"></div>
+<?php endif; ?>
 
 
 

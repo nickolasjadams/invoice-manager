@@ -47,3 +47,33 @@ if ($("#stripe-more").length) {
 		togglePaymentSidebar();
 	});
 }
+
+/**
+ * Removes Stripe payment navbar.
+ * Sets invoice totals to zero after payment.
+ * Shows an alert of successful payment.
+ */
+function successfulPayment() {
+	
+	$(".stripe-wrapper").css("right", "-300px")
+
+	setTimeout(function() {
+		$("#nav-toggle").removeClass("less");
+		$("#main-nav").removeClass("less");
+		$(".stripe-wrapper").remove();
+		$("#ui-messages").addClass("activate")
+		$("#ui-messages").html("Success");
+		setTimeout(function() {
+			$("#ui-messages").css("top", "0vh");
+			
+			setTimeout(function() {
+				$("#invoice-amount").html("0.00");
+				$("#ui-messages").css("height", "0vh");
+			}, 2000);
+		}, 200);
+	}, 1000);
+
+	
+
+
+}

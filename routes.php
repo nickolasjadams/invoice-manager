@@ -50,3 +50,4 @@ $router->get('api/partners', 'app/controllers/APIController.php', 'partners');
 $router->post('api/partners/verify', 'app/controllers/APIController.php', 'verify'); // admin
 $router->post('api/partners/toggle-active', 'app/controllers/APIController.php', 'toggleActive'); // admin
 $router->get('api/public/partners', 'app/controllers/APIController.php', 'publicPartners');
+$router->get('api/invoice/update', 'app/controllers/APIController.php', 'updatePayment');

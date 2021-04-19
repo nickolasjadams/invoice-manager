@@ -1,8 +1,5 @@
 
-
-
-
-$( "select#status" ).change(function() {
+$('select#status').change(function() {
     let status = $('select#status').val();
     if (status == 'draft') {
         $('button[type="submit"]').html('Save as Draft');

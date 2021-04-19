@@ -396,18 +396,46 @@ body.loggedin footer {
   color: #fff;
 }
 
+@keyframes flyaway {
+  from {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  30% {
+    transform: translate(35px, -15px) rotate(35deg) scale(0.5) skew(-5deg, -2deg);
+  }
+  to {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+}
 .stripe-wrapper {
   position: fixed;
   width: 280px;
-  background: #6c4dee;
-  color: #fff;
+  color: #222;
   right: 0;
   height: calc(100vh - 70px);
   top: calc(100vh - 64px);
   transition: all 0.4s cubic-bezier(0.59, 0.71, 0.32, 0.9);
 }
+.stripe-wrapper #submit:hover i {
+  animation: flyaway 2s infinite;
+}
+.stripe-wrapper #stripe-more, .stripe-wrapper #submit {
+  transition: all 0.4s cubic-bezier(0.59, 0.71, 0.32, 0.9);
+  border: 2px solid transparent;
+}
+.stripe-wrapper #stripe-more:hover, .stripe-wrapper #stripe-more:focus, .stripe-wrapper #submit:hover, .stripe-wrapper #submit:focus {
+  border: 2px solid #6c4dee;
+  background: #fff;
+  color: #6c4dee;
+}
+.stripe-wrapper i {
+  transition: transform 0.8s cubic-bezier(1, -0.01, 0.11, 0.95);
+}
 .stripe-wrapper.less {
   top: 70px;
+}
+.stripe-wrapper.less i.fa-chevron-up {
+  transform: rotate(180deg);
 }
 
 .sidenav + #main-wrapper .content {
@@ -457,6 +485,45 @@ body.loggedin footer {
 textarea {
   min-height: 120px;
   width: 100%;
+}
+
+.invoice-wrapper + #ui-messages {
+  position: absolute;
+  background: #283644;
+  color: #f5f5f5;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5em;
+  width: 100%;
+  height: 0vh;
+  top: 100vh;
+  left: 0;
+  transition: top 0.4s cubic-bezier(0.59, 0.71, 0.32, 0.9), height 0.4s cubic-bezier(0.59, 0.71, 0.32, 0.9);
+}
+.invoice-wrapper + #ui-messages.activate {
+  height: calc(100vh - 70px);
+}
+
+#stripe-more {
+  border: 0;
+  border-radius: 100px;
+  margin: 10px;
+  padding: 10px;
+  float: right;
+}
+#stripe-more + form {
+  clear: both;
+  margin-top: 80px;
+  margin-right: 10px;
+}
+
+.dashed-top {
+  border-top: 2px dashed lightgrey;
 }
 
 /*!
