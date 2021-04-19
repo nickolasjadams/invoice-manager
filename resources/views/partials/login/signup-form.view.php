@@ -20,7 +20,7 @@
                     }
 
                     ?>
-                    <div class="flexcol50 input-field <?= invalid_form_element('first_name'); ?>">
+                    <div class="flexcol50 input-field <?php echo invalid_form_element('first_name'); ?>">
                         <div class="error"><?= validate_form('first_name'); ?></div>
                         <input type="text" name="first_name" required placeholder="First Name" title="First Name" value="<?= persisted('first_name') ?>" />
                     </div>
