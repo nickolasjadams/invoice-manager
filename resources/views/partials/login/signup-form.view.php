@@ -1,4 +1,6 @@
-
+<?php
+// I'm not sure this is being recognized as php by heroku.
+?>
 <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
     <div class="modal-content">
